@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react'
 import Link from 'next/link'
 import { Instagram, Mail, MapPin, Phone, ArrowUp } from 'lucide-react'
@@ -23,53 +25,64 @@ const industries = [
 ]
 
 export const Footer = () => {
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+
   return (
-    <footer className="bg-secondary text-white pt-20 pb-10">
-      <div className="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 border-b border-white/10 pb-16">
+    <footer className="bg-emerald text-sand pt-32 pb-16 relative overflow-hidden">
+      {/* Decorative Heritage Pattern */}
+      <div className="absolute bottom-0 right-0 w-1/2 h-1/2 opacity-[0.03] bg-[url('https://www.transparenttextures.com/patterns/arabesque.png')] pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-20 lg:gap-12 border-b border-sand/10 pb-24 relative z-10">
         {/* Brand Section */}
-        <div className="flex flex-col space-y-8">
-          <Link href="/" className="flex flex-col group">
-            <span className="text-3xl font-bold tracking-tight text-white group-hover:text-primary transition-colors">
+        <div className="flex flex-col space-y-10">
+          <Link
+            href="/"
+            className="flex flex-col group transition-transform duration-500 hover:scale-105"
+          >
+            <span className="text-4xl font-serif tracking-tight text-sand group-hover:text-gold transition-colors">
               BuildCraft
             </span>
-            <span className="text-xs uppercase tracking-[0.3em] text-primary">
-              Flooring & Décor
+            <span className="text-[10px] uppercase tracking-[0.4em] text-gold font-bold mt-2">
+              Ajman • UAE
             </span>
           </Link>
-          <p className="text-white/60 text-sm leading-relaxed max-w-xs">
-            A UAE-based flooring solutions provider delivering high-quality carpets and premium
-            flooring across the United Arab Emirates.
+          <p className="text-sand/40 text-sm leading-relaxed max-w-xs font-light">
+            Licensed in Ajman Free Zone, providing elite architectural flooring and bespoke
+            carpeting across the United Arab Emirates since our inception.
           </p>
-          <div className="flex space-x-6">
+          <div className="flex space-x-4">
             <a
               href="https://instagram.com/buildcraftflooring"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-white/5 p-2 rounded-full hover:bg-primary transition-all duration-300"
+              className="w-12 h-12 border border-sand/20 flex items-center justify-center rounded-full hover:bg-gold hover:border-gold group transition-all duration-500"
             >
-              <Instagram className="w-5 h-5 text-white" />
+              <Instagram className="w-5 h-5 text-sand group-hover:text-emerald transition-colors" />
             </a>
             <a
               href="mailto:sales@buildcraftflooring.ae"
-              className="bg-white/5 p-2 rounded-full hover:bg-primary transition-all duration-300"
+              className="w-12 h-12 border border-sand/20 flex items-center justify-center rounded-full hover:bg-gold hover:border-gold group transition-all duration-500"
             >
-              <Mail className="w-5 h-5 text-white" />
+              <Mail className="w-5 h-5 text-sand group-hover:text-emerald transition-colors" />
             </a>
           </div>
         </div>
 
         {/* Services Column */}
-        <div className="flex flex-col space-y-8">
-          <h4 className="text-xs uppercase tracking-[0.2em] font-bold text-primary">
-            Our Services
+        <div className="flex flex-col space-y-10">
+          <h4 className="text-[10px] uppercase tracking-[0.4em] font-bold text-gold">
+            The Collections
           </h4>
-          <ul className="flex flex-col space-y-3">
+          <ul className="flex flex-col space-y-4">
             {services.map((service) => (
-              <li key={service}>
+              <li key={service} className="group overflow-hidden">
                 <Link
                   href="/services"
-                  className="text-white/60 text-sm hover:text-white transition-colors border-b border-transparent hover:border-primary pb-0.5"
+                  className="text-sand/60 text-sm hover:text-gold transition-all duration-300 flex items-center"
                 >
+                  <span className="w-0 group-hover:w-4 h-[1px] bg-gold mr-0 group-hover:mr-3 transition-all duration-500" />
                   {service}
                 </Link>
               </li>
@@ -78,17 +91,18 @@ export const Footer = () => {
         </div>
 
         {/* Industries Column */}
-        <div className="flex flex-col space-y-8">
-          <h4 className="text-xs uppercase tracking-[0.2em] font-bold text-primary">
-            Industries Served
+        <div className="flex flex-col space-y-10">
+          <h4 className="text-[10px] uppercase tracking-[0.4em] font-bold text-gold">
+            Strategic Sectors
           </h4>
-          <ul className="flex flex-col space-y-3">
+          <ul className="flex flex-col space-y-4">
             {industries.map((ind) => (
-              <li key={ind}>
+              <li key={ind} className="group overflow-hidden">
                 <Link
                   href="/industries"
-                  className="text-white/60 text-sm hover:text-white transition-colors border-b border-transparent hover:border-primary pb-0.5"
+                  className="text-sand/60 text-sm hover:text-gold transition-all duration-300 flex items-center"
                 >
+                  <span className="w-0 group-hover:w-4 h-[1px] bg-gold mr-0 group-hover:mr-3 transition-all duration-500" />
                   {ind}
                 </Link>
               </li>
@@ -97,45 +111,50 @@ export const Footer = () => {
         </div>
 
         {/* Contact Column */}
-        <div className="flex flex-col space-y-8">
-          <h4 className="text-xs uppercase tracking-[0.2em] font-bold text-primary">Contact Us</h4>
-          <div className="flex flex-col space-y-6">
-            <div className="flex items-start space-x-4">
-              <Phone className="w-5 h-5 text-primary shrink-0" />
+        <div className="flex flex-col space-y-10">
+          <h4 className="text-[10px] uppercase tracking-[0.4em] font-bold text-gold">Concierge</h4>
+          <div className="flex flex-col space-y-8">
+            <div className="flex items-start space-x-6">
+              <Phone className="w-5 h-5 text-gold shrink-0 mt-1" />
               <div className="flex flex-col">
-                <span className="text-xs text-white/40 uppercase tracking-widest font-bold mb-1">
-                  Phone
+                <span className="text-[9px] text-sand/20 uppercase tracking-[0.2em] font-bold mb-2">
+                  Direct Line
                 </span>
-                <span className="text-sm text-white/80 font-medium">+971 56 496 1186</span>
-              </div>
-            </div>
-            <div className="flex items-start space-x-4">
-              <Mail className="w-5 h-5 text-primary shrink-0" />
-              <div className="flex flex-col">
-                <span className="text-xs text-white/40 uppercase tracking-widest font-bold mb-1">
-                  Email
-                </span>
-                <span className="text-sm text-white/80 font-medium">
-                  sales@buildcraftflooring.ae
+                <span className="text-lg font-serif italic text-sand hover:text-gold transition-colors cursor-pointer">
+                  +971 56 496 1186
                 </span>
               </div>
             </div>
-            <div className="flex items-start space-x-4">
-              <MapPin className="w-5 h-5 text-primary shrink-0" />
+            <div className="flex items-start space-x-6">
+              <MapPin className="w-5 h-5 text-gold shrink-0 mt-1" />
               <div className="flex flex-col">
-                <span className="text-xs text-white/40 uppercase tracking-widest font-bold mb-1">
-                  Location
+                <span className="text-[9px] text-sand/20 uppercase tracking-[0.2em] font-bold mb-2">
+                  Regional HQ
                 </span>
-                <span className="text-sm text-white/80 font-medium">Ajman Free Zone, UAE</span>
+                <span className="text-sm font-light text-sand/80">
+                  Ajman Free Zone, United Arab Emirates
+                </span>
               </div>
             </div>
+
+            <button
+              onClick={scrollToTop}
+              className="flex items-center space-x-4 text-[10px] uppercase tracking-[0.4em] font-bold text-gold/40 hover:text-gold transition-colors group mt-4"
+            >
+              <span>Back to Zenith</span>
+              <div className="w-8 h-8 rounded-full border border-gold/20 flex items-center justify-center group-hover:border-gold transition-colors">
+                <ArrowUp className="w-4 h-4" />
+              </div>
+            </button>
           </div>
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 md:px-12 pt-10 flex flex-col md:flex-row justify-between items-center text-white/40 text-xs">
-        <p>&copy; {new Date().getFullYear()} BuildCraft Flooring & Décor. All Rights Reserved.</p>
-        <p className="mt-4 md:mt-0 uppercase tracking-widest">Premium Quality Flooring</p>
+      <div className="max-w-7xl mx-auto px-6 md:px-12 pt-12 flex flex-col md:flex-row justify-between items-center text-sand/20 text-[10px] uppercase tracking-[0.3em] font-bold relative z-10">
+        <p>
+          &copy; {new Date().getFullYear()} BuildCraft Flooring & Décor. Architectural Precision.
+        </p>
+        <p className="mt-6 md:mt-0 opacity-40">Licensed in the United Arab Emirates</p>
       </div>
     </footer>
   )

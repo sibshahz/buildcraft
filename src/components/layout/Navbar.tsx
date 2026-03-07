@@ -17,50 +17,87 @@ const navLinks = [
 
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50)
+    }
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   return (
-    <nav className="fixed top-0 left-0 w-full z-50 transition-all duration-300 px-6 md:px-12 bg-white py-4 shadow-lg border-b border-gray-100">
+    <nav
+      className={cn(
+        'fixed top-0 left-0 w-full z-50 transition-all duration-700 px-6 md:px-12',
+        scrolled
+          ? 'bg-[#FAF7F2]/95 backdrop-blur-md py-4 shadow-xl border-b border-gold/20'
+          : 'bg-transparent py-8',
+      )}
+    >
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="group flex flex-col">
-          <span className="text-2xl font-bold tracking-tight text-secondary transition-colors duration-300">
+          <span
+            className={cn(
+              'text-2xl md:text-3xl font-serif tracking-tight transition-colors duration-500',
+              scrolled ? 'text-emerald' : 'text-white',
+            )}
+          >
             BuildCraft
           </span>
-          <span className="text-[10px] uppercase tracking-[0.2em] text-primary transition-colors duration-300">
-            Flooring & Décor
+          <span
+            className={cn(
+              'text-[9px] uppercase tracking-[0.4em] font-bold transition-colors duration-500',
+              scrolled ? 'text-gold' : 'text-gold/90',
+            )}
+          >
+            Ajman • UAE
           </span>
         </Link>
 
         {/* Desktop Links */}
-        <div className="hidden lg:flex items-center space-x-10">
+        <div className="hidden lg:flex items-center space-x-12">
           {navLinks.map((link) => (
             <Link
               key={link.name}
               href={link.href}
-              className="text-sm font-medium uppercase tracking-widest text-secondary hover:text-primary transition-colors duration-200 relative group"
+              className={cn(
+                'text-[10px] uppercase tracking-[0.3em] font-bold transition-all duration-300 relative group',
+                scrolled ? 'text-emerald hover:text-gold' : 'text-white/90 hover:text-white',
+              )}
             >
               {link.name}
-              <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-primary transition-all duration-300 group-hover:w-full"></span>
+              <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-0 h-[1px] bg-gold transition-all duration-500 group-hover:w-full"></span>
             </Link>
           ))}
         </div>
 
         {/* Desktop CTA */}
-        <div className="hidden lg:flex items-center space-x-6">
+        <div className="hidden lg:flex items-center">
           <Link
             href="/contact"
-            className="bg-primary text-white px-6 py-2.5 rounded-none text-xs font-bold uppercase tracking-widest hover:bg-primary-dark transition-all duration-300 shadow-md"
+            className={cn(
+              'px-8 py-3 text-[10px] font-bold uppercase tracking-[0.3em] transition-all duration-500 border',
+              scrolled
+                ? 'bg-emerald text-sand border-emerald hover:bg-gold hover:border-gold'
+                : 'bg-white/10 text-white border-white/20 backdrop-blur-sm hover:bg-white hover:text-emerald',
+            )}
           >
-            Request Quote
+            Inquire Now
           </Link>
         </div>
 
         {/* Mobile Toggle */}
         <button
-          className="lg:hidden p-2 focus:outline-none transition-colors duration-300 text-secondary"
+          className={cn(
+            'lg:hidden p-2 transition-colors duration-500',
+            scrolled ? 'text-emerald' : 'text-white',
+          )}
           onClick={() => setIsOpen(!isOpen)}
         >
-          {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          {isOpen ? <X className="w-8 h-8" /> : <Menu className="w-8 h-8 font-light" />}
         </button>
       </div>
 
@@ -68,54 +105,66 @@ export const Navbar = () => {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, x: '100%' }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: '100%' }}
-            transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-            className="fixed inset-0 bg-white z-[60] lg:hidden flex flex-col p-10"
+            initial={{ opacity: 0, scale: 1.1 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 1.1 }}
+            className="fixed inset-0 bg-emerald z-[60] lg:hidden flex flex-col p-12 overflow-hidden"
           >
-            <div className="flex justify-between items-center mb-16">
-              <Link href="/" className="flex flex-col" onClick={() => setIsOpen(false)}>
-                <span className="text-2xl font-bold tracking-tight text-secondary">BuildCraft</span>
-                <span className="text-[10px] uppercase tracking-[0.2em] text-primary">
+            {/* Decorative Grid Pattern Overlay */}
+            <div className="absolute inset-0 opacity-10 pointer-events-none bg-[url('https://raw.githubusercontent.com/shadcn/ui/main/apps/www/public/examples/music-dark.png')] bg-repeat" />
+
+            <div className="flex justify-between items-center mb-20 relative z-10">
+              <div className="flex flex-col">
+                <span className="text-3xl font-serif text-sand">BuildCraft</span>
+                <span className="text-[10px] uppercase tracking-[0.4em] text-gold mt-1">
                   Flooring & Décor
                 </span>
-              </Link>
-              <button onClick={() => setIsOpen(false)}>
-                <X className="w-8 h-8 text-secondary" />
+              </div>
+              <button
+                onClick={() => setIsOpen(false)}
+                className="w-12 h-12 border border-sand/20 flex items-center justify-center rounded-full hover:bg-sand/10 transition-colors"
+              >
+                <X className="w-6 h-6 text-sand" />
               </button>
             </div>
 
-            <nav className="flex flex-col space-y-8 mb-16">
-              {navLinks.map((link) => (
-                <Link
+            <nav className="flex flex-col space-y-10 relative z-10">
+              {navLinks.map((link, i) => (
+                <motion.div
+                  initial={{ x: -20, opacity: 0 }}
+                  animate={{ x: 0, opacity: 1 }}
+                  transition={{ delay: i * 0.1 }}
                   key={link.name}
-                  href={link.href}
-                  className="text-4xl font-bold text-secondary hover:text-primary transition-colors"
-                  onClick={() => setIsOpen(false)}
                 >
-                  {link.name}
-                </Link>
+                  <Link
+                    href={link.href}
+                    className="text-5xl font-serif italic text-sand hover:text-gold transition-colors block"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    {link.name}
+                  </Link>
+                </motion.div>
               ))}
             </nav>
 
-            <div className="mt-auto flex flex-col space-y-6">
-              <div className="flex items-center space-x-4 text-secondary/70">
-                <Phone className="w-5 h-5" />
-                <span className="text-sm font-medium">+971 56 496 1186</span>
+            <div className="mt-auto flex flex-col space-y-8 relative z-10 pt-10 border-t border-sand/10">
+              <div className="flex flex-col space-y-2">
+                <span className="text-[10px] uppercase tracking-widest text-sand/40 font-bold">
+                  Liaise With Us
+                </span>
+                <a
+                  href="tel:+971564961186"
+                  className="text-xl text-sand hover:text-gold transition-colors"
+                >
+                  +971 56 496 1186
+                </a>
               </div>
-              <div className="flex items-center space-x-4 text-secondary/70">
-                <Mail className="w-5 h-5" />
-                <span className="text-sm font-medium">sales@buildcraftflooring.ae</span>
-              </div>
-              <div className="flex items-center space-x-6 pt-4 border-t border-gray-100">
+              <div className="flex items-center space-x-6">
                 <a
                   href="https://instagram.com/buildcraftflooring"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-secondary hover:text-primary transition-colors"
+                  className="text-sand border border-sand/20 p-3 rounded-full hover:bg-gold hover:border-gold transition-all"
                 >
-                  <Instagram className="w-6 h-6" />
+                  <Instagram className="w-5 h-5" />
                 </a>
               </div>
             </div>

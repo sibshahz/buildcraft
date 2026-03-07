@@ -3,54 +3,68 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
+import Image from 'next/image'
 import { ArrowRight, BadgeCheck } from 'lucide-react'
 
 export const AboutSection = () => {
   return (
-    <section className="py-32 bg-secondary text-white relative overflow-hidden">
-      {/* Background Decorative Text */}
-      <h2 className="absolute top-1/2 left-0 -translate-y-1/2 -rotate-90 text-[10vw] font-black text-white/5 whitespace-nowrap leading-none hidden md:block">
-        BUILD CRAFT
-      </h2>
+    <section className="py-24 md:py-48 bg-pearl relative overflow-hidden">
+      {/* Decorative Heritage Pattern */}
+      <div className="absolute top-0 right-0 w-1/3 h-full opacity-[0.03] bg-[url('https://www.transparenttextures.com/patterns/arabesque.png')] pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-2 gap-20 relative z-10">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-2 gap-24 items-center relative z-10">
         <motion.div
-          initial={{ opacity: 0, x: -30 }}
+          initial={{ opacity: 0, x: -40 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
         >
-          <span className="text-primary font-bold uppercase tracking-[0.3em] text-xs block mb-6">
-            Our Brand Narrative
-          </span>
-          <h2 className="text-4xl md:text-5xl font-bold mb-10 leading-tight font-outfit">
-            A Legacy of Excellence <br />
-            <span className="text-primary font-light italic">Across the UAE.</span>
-          </h2>
-          <p className="text-brand-offwhite/60 text-lg leading-relaxed mb-8 max-w-xl">
-            Licensed under Ajman Free Zone, BuildCraft Flooring & Décor has grown into a trusted
-            leader in the flooring industry. We specialize in supplying and installing high-quality
-            carpets, tiles, and LVT solutions that define architectural elegance.
-          </p>
-          <div className="flex flex-col space-y-6 mb-12">
-            {[
-              'Specialized Hospitality & Office Flooring',
-              'Premium Mosque & Residential Carpets',
-              'Expert Installation Across all Emirates',
-              'High-Quality SPC & LVT Flooring',
-            ].map((feature, idx) => (
-              <div key={idx} className="flex items-center space-x-4">
-                <BadgeCheck className="w-6 h-6 text-primary" />
-                <span className="font-semibold text-brand-offwhite/80">{feature}</span>
-              </div>
-            ))}
+          <div className="flex items-center space-x-4 mb-8">
+            <div className="w-10 h-[1px] bg-gold" />
+            <span className="text-gold font-bold uppercase tracking-[0.4em] text-[10px]">
+              The BuildCraft Legacy
+            </span>
           </div>
+
+          <h2 className="text-5xl md:text-7xl font-serif text-emerald leading-[1.1] mb-12">
+            Regional Expertise. <br />
+            <span className="italic font-light">Global Quality.</span>
+          </h2>
+
+          <div className="space-y-8 text-emerald/70 text-lg md:text-xl font-light leading-relaxed mb-12 font-outfit">
+            <p>
+              Licensed under the **Ajman Free Zone**, BuildCraft Flooring & Décor stands as a
+              testament to Emirati reliability and architectural excellence. We represent the
+              pinnacle of flooring solutions across the seven emirates.
+            </p>
+            <p>
+              From the high-traffic corridors of **luxury UAE hotels** to the serene environments of
+              local **mosques and private royal villas**, our commitment to premium installation
+              quality remains unparalleled.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 gap-8 mb-16">
+            <div className="flex flex-col">
+              <span className="text-gold font-bold text-4xl font-serif mb-2">07</span>
+              <span className="text-[10px] uppercase tracking-widest text-emerald/40 font-bold">
+                Emirates Served
+              </span>
+            </div>
+            <div className="flex flex-col">
+              <span className="text-gold font-bold text-4xl font-serif mb-2">100+</span>
+              <span className="text-[10px] uppercase tracking-widest text-emerald/40 font-bold">
+                Elite Projects
+              </span>
+            </div>
+          </div>
+
           <Link
             href="/about"
-            className="group flex items-center text-primary font-bold uppercase tracking-widest text-xs border-b border-primary/20 pb-2 hover:border-primary transition-all duration-300"
+            className="group flex items-center text-emerald font-bold uppercase tracking-[0.3em] text-[10px] border-b border-gold/40 pb-3 hover:border-gold transition-all duration-300 self-start"
           >
-            Read Our Full Story
-            <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
+            Explore Our Story
+            <ArrowRight className="ml-3 w-4 h-4 transition-transform group-hover:translate-x-2" />
           </Link>
         </motion.div>
 
@@ -58,23 +72,34 @@ export const AboutSection = () => {
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 1 }}
-          className="relative flex justify-center w-full"
+          transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
+          className="relative"
         >
-          <div className="w-full h-[600px] md:h-[700px] bg-secondary border border-white/5 relative group p-4 overflow-hidden shadow-2xl">
-            <div className="absolute inset-0 bg-primary/10 transition-opacity duration-700 opacity-20 group-hover:opacity-0 z-10" />
-            <div className="w-full h-full bg-[url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center transition-transform duration-1000 group-hover:scale-105 shadow-2xl" />
+          {/* Main Image Frame */}
+          <div className="relative aspect-[4/5] w-full overflow-hidden bg-emerald p-6 shadow-2xl">
+            <div className="absolute inset-0 z-10 bg-emerald/10 opacity-40 group-hover:opacity-0 transition-opacity" />
+            <Image
+              src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop"
+              alt="Luxury Emirati Villa Interior"
+              fill
+              className="object-cover transition-transform duration-2000 hover:scale-105"
+            />
           </div>
 
-          {/* MD Section - Moved outside overflow-hidden but stays inside motion.div parent */}
-          <div className="absolute bottom-12 -left-3 lg:-left-20 bg-brand-offwhite p-10 md:p-14 max-w-xs shadow-2xl text-secondary z-20">
-            <span className="text-primary font-bold uppercase tracking-widest text-[10px] block mb-4">
-              Leadership
+          {/* Leadership Signature Card */}
+          <div className="absolute -bottom-12 -left-3 md:-left-12 bg-white p-10 md:p-14 max-w-xs shadow-[0_30px_60px_-15px_rgba(6,57,45,0.2)]">
+            <span className="text-gold font-bold uppercase tracking-widest text-[9px] block mb-4">
+              Direction
             </span>
-            <h4 className="text-2xl font-bold font-outfit mb-2 italic">Noshaba Muhammad</h4>
-            <p className="text-xs text-secondary/60 uppercase tracking-widest font-bold">
+            <h4 className="text-2xl font-serif text-emerald italic mb-2 tracking-tight">
+              Noshaba Muhammad
+            </h4>
+            <p className="text-[10px] text-emerald/40 uppercase tracking-[0.3em] font-bold">
               Managing Director
             </p>
+
+            {/* Subtle Gold Divider */}
+            <div className="mt-8 w-12 h-[2px] bg-gold" />
           </div>
         </motion.div>
       </div>
