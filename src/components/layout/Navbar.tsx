@@ -27,6 +27,18 @@ export const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = 'unset'
+    }
+    return () => {
+      document.body.style.overflow = 'unset'
+    }
+  }, [isOpen])
+
   return (
     <nav
       className={cn(
@@ -108,7 +120,7 @@ export const Navbar = () => {
             initial={{ opacity: 0, scale: 1.1 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 1.1 }}
-            className="fixed inset-0 bg-emerald z-[60] lg:hidden flex flex-col p-12 overflow-hidden"
+            className="fixed inset-0 bg-emerald z-[60] lg:hidden flex flex-col p-12 overflow-y-auto"
           >
             {/* Decorative Grid Pattern Overlay */}
             <div className="absolute inset-0 opacity-10 pointer-events-none bg-[url('https://raw.githubusercontent.com/shadcn/ui/main/apps/www/public/examples/music-dark.png')] bg-repeat" />
