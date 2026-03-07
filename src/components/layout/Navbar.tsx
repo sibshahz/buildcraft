@@ -40,78 +40,80 @@ export const Navbar = () => {
   }, [isOpen])
 
   return (
-    <nav
-      className={cn(
-        'fixed top-0 left-0 w-full z-50 transition-all duration-700 px-6 md:px-12',
-        scrolled
-          ? 'bg-[#FAF7F2]/95 backdrop-blur-md py-4 shadow-xl border-b border-gold/20'
-          : 'bg-transparent py-8',
-      )}
-    >
-      <div className="max-w-7xl mx-auto flex items-center justify-between">
-        {/* Logo */}
-        <Link href="/" className="group flex flex-col">
-          <span
-            className={cn(
-              'text-2xl md:text-3xl font-serif tracking-tight transition-colors duration-500',
-              scrolled ? 'text-emerald' : 'text-white',
-            )}
-          >
-            BuildCraft
-          </span>
-          <span
-            className={cn(
-              'text-[9px] uppercase tracking-[0.4em] font-bold transition-colors duration-500',
-              scrolled ? 'text-gold' : 'text-gold/90',
-            )}
-          >
-            Ajman • UAE
-          </span>
-        </Link>
-
-        {/* Desktop Links */}
-        <div className="hidden lg:flex items-center space-x-12">
-          {navLinks.map((link) => (
-            <Link
-              key={link.name}
-              href={link.href}
+    <>
+      <nav
+        className={cn(
+          'fixed top-0 left-0 w-full transition-all duration-700 px-6 md:px-12 z-[100]',
+          scrolled
+            ? 'bg-[#FAF7F2]/95 backdrop-blur-md py-4 shadow-xl border-b border-gold/20'
+            : 'bg-transparent py-8',
+        )}
+      >
+        <div className="max-w-7xl mx-auto flex items-center justify-between">
+          {/* Logo */}
+          <Link href="/" className="group flex flex-col">
+            <span
               className={cn(
-                'text-[10px] uppercase tracking-[0.3em] font-bold transition-all duration-300 relative group',
-                scrolled ? 'text-emerald hover:text-gold' : 'text-white/90 hover:text-white',
+                'text-2xl md:text-3xl font-serif tracking-tight transition-colors duration-500',
+                scrolled ? 'text-emerald' : 'text-white',
               )}
             >
-              {link.name}
-              <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-0 h-[1px] bg-gold transition-all duration-500 group-hover:w-full"></span>
-            </Link>
-          ))}
-        </div>
-
-        {/* Desktop CTA */}
-        <div className="hidden lg:flex items-center">
-          <Link
-            href="/contact"
-            className={cn(
-              'px-8 py-3 text-[10px] font-bold uppercase tracking-[0.3em] transition-all duration-500 border',
-              scrolled
-                ? 'bg-emerald text-sand border-emerald hover:bg-gold hover:border-gold'
-                : 'bg-white/10 text-white border-white/20 backdrop-blur-sm hover:bg-white hover:text-emerald',
-            )}
-          >
-            Inquire Now
+              BuildCraft
+            </span>
+            <span
+              className={cn(
+                'text-[9px] uppercase tracking-[0.4em] font-bold transition-colors duration-500',
+                scrolled ? 'text-gold' : 'text-gold/90',
+              )}
+            >
+              Ajman • UAE
+            </span>
           </Link>
-        </div>
 
-        {/* Mobile Toggle */}
-        <button
-          className={cn(
-            'lg:hidden p-2 transition-colors duration-500',
-            scrolled ? 'text-emerald' : 'text-white',
-          )}
-          onClick={() => setIsOpen(!isOpen)}
-        >
-          {isOpen ? <X className="w-8 h-8" /> : <Menu className="w-8 h-8 font-light" />}
-        </button>
-      </div>
+          {/* Desktop Links */}
+          <div className="hidden lg:flex items-center space-x-12">
+            {navLinks.map((link) => (
+              <Link
+                key={link.name}
+                href={link.href}
+                className={cn(
+                  'text-[10px] uppercase tracking-[0.3em] font-bold transition-all duration-300 relative group',
+                  scrolled ? 'text-emerald hover:text-gold' : 'text-white/90 hover:text-white',
+                )}
+              >
+                {link.name}
+                <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-0 h-[1px] bg-gold transition-all duration-500 group-hover:w-full"></span>
+              </Link>
+            ))}
+          </div>
+
+          {/* Desktop CTA */}
+          <div className="hidden lg:flex items-center">
+            <Link
+              href="/contact"
+              className={cn(
+                'px-8 py-3 text-[10px] font-bold uppercase tracking-[0.3em] transition-all duration-500 border',
+                scrolled
+                  ? 'bg-emerald text-sand border-emerald hover:bg-gold hover:border-gold'
+                  : 'bg-white/10 text-white border-white/20 backdrop-blur-sm hover:bg-white hover:text-emerald',
+              )}
+            >
+              Inquire Now
+            </Link>
+          </div>
+
+          {/* Mobile Toggle */}
+          <button
+            className={cn(
+              'lg:hidden p-2 transition-colors duration-500',
+              scrolled ? 'text-emerald' : 'text-white',
+            )}
+            onClick={() => setIsOpen(!isOpen)}
+          >
+            {isOpen ? <X className="w-8 h-8" /> : <Menu className="w-8 h-8 font-light" />}
+          </button>
+        </div>
+      </nav>
 
       {/* Mobile Menu */}
       <AnimatePresence>
@@ -120,7 +122,7 @@ export const Navbar = () => {
             initial={{ opacity: 0, scale: 1.1 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 1.1 }}
-            className="fixed inset-0 bg-emerald z-[60] lg:hidden flex flex-col p-12 overflow-y-auto"
+            className="fixed inset-0 bg-emerald z-[110] lg:hidden flex flex-col p-12 overflow-y-auto"
           >
             {/* Decorative Grid Pattern Overlay */}
             <div className="absolute inset-0 opacity-10 pointer-events-none bg-[url('https://raw.githubusercontent.com/shadcn/ui/main/apps/www/public/examples/music-dark.png')] bg-repeat" />
@@ -183,6 +185,6 @@ export const Navbar = () => {
           </motion.div>
         )}
       </AnimatePresence>
-    </nav>
+    </>
   )
 }
