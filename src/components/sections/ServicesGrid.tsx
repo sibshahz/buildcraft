@@ -81,18 +81,18 @@ const services = [
 
 export const ServicesGrid = () => {
   return (
-    <section className="py-24 md:py-40 bg-sand" id="services">
+    <section className="py-24 md:py-40 bg-background" id="services">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         <div className="flex flex-col mb-24 max-w-3xl">
           <div className="flex items-center space-x-4 mb-6">
-            <div className="w-10 h-[1px] bg-gold" />
-            <span className="text-gold font-bold uppercase tracking-[0.4em] text-[10px]">
+            <div className="w-10 h-[1px] bg-secondary" />
+            <span className="text-secondary font-bold uppercase tracking-[0.4em] text-[10px]">
               Our Expertise
             </span>
           </div>
           <h2 className="text-5xl md:text-7xl font-serif text-onyx leading-tight">
             Comprehensive <br />
-            <span className="italic font-light">Flooring Masterpieces.</span>
+            <span className="italic font-light opacity-60">Flooring Masterpieces.</span>
           </h2>
         </div>
 
@@ -108,47 +108,47 @@ export const ServicesGrid = () => {
             >
               <Link
                 href={service.href}
-                className="relative aspect-[4/5] overflow-hidden mb-8 bg-pearl"
+                className="relative aspect-[4/5] overflow-hidden mb-8 bg-onyx"
               >
                 <Image
                   src={service.image}
                   alt={service.title}
                   fill
-                  className="object-cover transition-transform duration-1000 group-hover:scale-110 grayscale-[10%] group-hover:grayscale-0 shadow-xl"
+                  className="object-cover transition-transform duration-1000 group-hover:scale-110 grayscale-[10%] group-hover:grayscale-0 shadow-xl opacity-90 group-hover:opacity-100"
                 />
                 {/* Decorative Frame Overlay */}
-                <div className="absolute inset-0 border-[0px] group-hover:border-[12px] border-onyx/10 transition-all duration-700 pointer-events-none" />
+                <div className="absolute inset-0 border-[0px] group-hover:border-[12px] border-onyx/20 transition-all duration-700 pointer-events-none" />
 
                 {/* Reveal Arrow */}
-                <div className="absolute bottom-6 right-6 w-12 h-12 bg-gold flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0 shadow-lg">
-                  <ArrowUpRight className="w-6 h-6 text-onyx" />
+                <div className="absolute bottom-6 right-6 w-12 h-12 bg-onyx flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0 shadow-lg">
+                  <ArrowUpRight className="w-6 h-6 text-background" />
                 </div>
               </Link>
 
               <div className="flex flex-col">
-                <span className="text-gold font-bold uppercase tracking-widest text-[9px] mb-3">
+                <span className="text-secondary font-bold uppercase tracking-widest text-[9px] mb-3">
                   {service.category}
                 </span>
-                <h3 className="text-2xl font-serif text-onyx mb-4 group-hover:text-gold transition-colors duration-300">
+                <h3 className="text-2xl font-serif text-onyx mb-4 group-hover:text-secondary transition-colors duration-300">
                   {service.title}
                 </h3>
-                <p className="text-onyx/60 text-sm leading-relaxed font-light line-clamp-2">
+                <p className="text-onyx/70 text-sm leading-relaxed font-light line-clamp-2">
                   {service.description}
                 </p>
 
-                <div className="mt-6 w-0 group-hover:w-full h-[1px] bg-gold/30 transition-all duration-700" />
+                <div className="mt-6 w-0 group-hover:w-full h-[1px] bg-secondary/30 transition-all duration-700" />
               </div>
             </motion.div>
           ))}
         </div>
 
-        <div className="mt-24 pt-16 border-t border-onyx/5 flex justify-center">
+        <div className="mt-24 pt-16 border-t border-onyx/10 flex justify-center">
           <Link href="/services" className="group flex flex-col items-center space-y-4">
-            <span className="text-[10px] uppercase tracking-[0.4em] font-bold text-onyx/40 group-hover:text-gold transition-colors">
+            <span className="text-[10px] uppercase tracking-[0.4em] font-bold text-onyx/40 group-hover:text-secondary transition-colors">
               Discover the Full Portfolio
             </span>
-            <div className="w-12 h-12 rounded-full border border-onyx/10 flex items-center justify-center group-hover:bg-onyx group-hover:border-onyx transition-all duration-500">
-              <ArrowUpRight className="w-5 h-5 text-onyx group-hover:text-gold" />
+            <div className="w-12 h-12 rounded-full border border-onyx/10 flex items-center justify-center group-hover:bg-onyx transition-all duration-500">
+              <ArrowUpRight className="w-5 h-5 text-onyx group-hover:text-background" />
             </div>
           </Link>
         </div>

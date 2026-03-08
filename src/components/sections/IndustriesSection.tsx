@@ -58,21 +58,21 @@ const industries = [
 
 export const IndustriesSection = () => {
   return (
-    <section className="py-24 md:py-48 bg-onyx text-sand overflow-hidden relative">
+    <section className="py-24 md:py-48 bg-background text-onyx overflow-hidden relative">
       {/* Decorative Grid Pattern Overlay */}
-      <div className="absolute inset-0 opacity-[0.02] bg-[url('https://www.transparenttextures.com/patterns/arabesque.png')] pointer-events-none" />
+      <div className="absolute inset-0 opacity-[0.05] bg-[url('https://www.transparenttextures.com/patterns/arabesque.png')] pointer-events-none invert grayscale" />
 
       <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
         <div className="flex flex-col mb-24 max-w-3xl">
           <div className="flex items-center space-x-4 mb-6">
-            <div className="w-10 h-[1px] bg-gold" />
-            <span className="text-gold font-bold uppercase tracking-[0.4em] text-[10px]">
+            <div className="w-10 h-[1px] bg-secondary" />
+            <span className="text-secondary font-bold uppercase tracking-[0.4em] text-[10px]">
               Strategic Partners
             </span>
           </div>
-          <h2 className="text-5xl md:text-7xl font-serif text-sand leading-tight">
+          <h2 className="text-5xl md:text-7xl font-serif text-onyx leading-tight">
             Industries <br />
-            <span className="italic font-light text-gold">We Elevate.</span>
+            <span className="italic font-light opacity-60">We Elevate.</span>
           </h2>
         </div>
 
@@ -86,33 +86,33 @@ export const IndustriesSection = () => {
               transition={{ delay: index * 0.1, duration: 1, ease: [0.22, 1, 0.36, 1] }}
               className="group cursor-default"
             >
-              <div className="relative h-[400px] w-full mb-8 overflow-hidden bg-white/5 border border-white/10 p-2">
+              <div className="relative h-[400px] w-full mb-8 overflow-hidden bg-onyx/5 border border-onyx/10 p-2">
                 {/* Main Image Overlay */}
-                <div className="absolute inset-0 z-10 bg-onyx/60 opacity-100 group-hover:opacity-0 transition-opacity duration-700" />
+                <div className="absolute inset-0 z-10 bg-background/80 opacity-100 group-hover:opacity-0 transition-opacity duration-700" />
 
                 <Image
                   src={industry.image}
                   alt={industry.title}
                   fill
-                  className="object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 scale-105 group-hover:scale-100"
+                  className="object-cover group-hover:grayscale-0 transition-all duration-1000 scale-105 group-hover:scale-100"
                 />
 
                 {/* Large Icon Overlay */}
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 group-hover:opacity-0 transition-opacity duration-500 flex flex-col items-center">
-                  <industry.icon className="w-16 h-16 text-gold mb-6 stroke-[1px]" />
-                  <span className="text-sand font-serif text-2xl tracking-wide">
+                  <industry.icon className="w-16 h-16 text-secondary mb-6 stroke-[1px]" />
+                  <span className="text-onyx font-serif text-2xl tracking-wide">
                     {industry.title}
                   </span>
                 </div>
 
                 {/* Hover Content */}
-                <div className="absolute inset-0 z-30 bg-gold translate-y-full group-hover:translate-y-0 transition-transform duration-700 flex flex-col items-center justify-center p-12 text-center">
-                  <industry.icon className="w-12 h-12 text-onyx mb-8" />
-                  <h4 className="text-2xl font-serif text-onyx mb-6">{industry.title}</h4>
-                  <p className="text-onyx/70 text-sm leading-relaxed font-light">
+                <div className="absolute inset-0 z-30 bg-onyx translate-y-full group-hover:translate-y-0 transition-transform duration-700 flex flex-col items-center justify-center p-12 text-center">
+                  <industry.icon className="w-12 h-12 text-background mb-8" />
+                  <h4 className="text-2xl font-serif text-background mb-6">{industry.title}</h4>
+                  <p className="text-background/60 text-sm leading-relaxed font-light">
                     {industry.description}
                   </p>
-                  <div className="mt-8 w-12 h-[1px] bg-onyx/20" />
+                  <div className="mt-8 w-12 h-[1px] bg-background/20" />
                 </div>
               </div>
             </motion.div>

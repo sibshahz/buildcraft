@@ -8,9 +8,9 @@ import { ArrowRight, BadgeCheck } from 'lucide-react'
 
 export const AboutSection = () => {
   return (
-    <section className="py-24 md:py-48 bg-pearl relative overflow-hidden">
+    <section className="py-24 md:py-48 bg-background relative overflow-hidden">
       {/* Decorative Heritage Pattern */}
-      <div className="absolute top-0 right-0 w-1/3 h-full opacity-[0.03] bg-[url('https://www.transparenttextures.com/patterns/arabesque.png')] pointer-events-none" />
+      <div className="absolute top-0 right-0 w-1/3 h-full opacity-[0.05] bg-[url('https://www.transparenttextures.com/patterns/arabesque.png')] pointer-events-none invert grayscale" />
 
       <div className="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-2 gap-24 items-center relative z-10">
         <motion.div
@@ -20,18 +20,18 @@ export const AboutSection = () => {
           transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
         >
           <div className="flex items-center space-x-4 mb-8">
-            <div className="w-10 h-[1px] bg-gold" />
-            <span className="text-gold font-bold uppercase tracking-[0.4em] text-[10px]">
+            <div className="w-10 h-[1px] bg-secondary" />
+            <span className="text-secondary font-bold uppercase tracking-[0.4em] text-[10px]">
               The BuildCraft Legacy
             </span>
           </div>
 
           <h2 className="text-5xl md:text-7xl font-serif text-onyx leading-[1.1] mb-12">
             Regional Expertise. <br />
-            <span className="italic font-light">Global Quality.</span>
+            <span className="italic font-light opacity-60">Global Quality.</span>
           </h2>
 
-          <div className="space-y-8 text-onyx/70 text-lg md:text-xl font-light leading-relaxed mb-12 font-outfit">
+          <div className="space-y-8 text-onyx/80 text-lg md:text-xl font-light leading-relaxed mb-12 font-outfit">
             <p>
               Licensed under the **Ajman Free Zone**, BuildCraft Flooring & Décor stands as a
               testament to Emirati reliability and architectural excellence. We represent the
@@ -46,13 +46,13 @@ export const AboutSection = () => {
 
           <div className="grid grid-cols-2 gap-8 mb-16">
             <div className="flex flex-col">
-              <span className="text-gold font-bold text-4xl font-serif mb-2">07</span>
+              <span className="text-secondary font-bold text-4xl font-serif mb-2">07</span>
               <span className="text-[10px] uppercase tracking-widest text-onyx/40 font-bold">
                 Emirates Served
               </span>
             </div>
             <div className="flex flex-col">
-              <span className="text-gold font-bold text-4xl font-serif mb-2">100+</span>
+              <span className="text-secondary font-bold text-4xl font-serif mb-2">100+</span>
               <span className="text-[10px] uppercase tracking-widest text-onyx/40 font-bold">
                 Elite Projects
               </span>
@@ -61,7 +61,7 @@ export const AboutSection = () => {
 
           <Link
             href="/about"
-            className="group flex items-center text-onyx font-bold uppercase tracking-[0.3em] text-[10px] border-b border-gold/40 pb-3 hover:border-gold transition-all duration-300 self-start"
+            className="group flex items-center text-onyx font-bold uppercase tracking-[0.3em] text-[10px] border-b border-onyx/40 pb-3 hover:border-onyx transition-all duration-300 self-start"
           >
             Explore Our Story
             <ArrowRight className="ml-3 w-4 h-4 transition-transform group-hover:translate-x-2" />
@@ -77,7 +77,7 @@ export const AboutSection = () => {
         >
           {/* Main Image Frame */}
           <div className="relative aspect-[4/5] w-full overflow-hidden bg-onyx p-6 shadow-2xl">
-            <div className="absolute inset-0 z-10 bg-onyx/10 opacity-40 group-hover:opacity-0 transition-opacity" />
+            <div className="absolute inset-0 z-10 bg-onyx/20 opacity-40 group-hover:opacity-0 transition-opacity" />
             <Image
               src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop"
               alt="Luxury Emirati Villa Interior"
@@ -87,19 +87,19 @@ export const AboutSection = () => {
           </div>
 
           {/* Leadership Signature Card */}
-          <div className="absolute -bottom-12 -left-3 md:-left-12 bg-white p-10 md:p-14 max-w-xs shadow-[0_30px_60px_-15px_rgba(8,8,8,0.2)]">
+          <div className="absolute -bottom-12 -left-3 md:-left-12 bg-onyx p-10 md:p-14 max-w-xs shadow-2xl">
             <span className="text-gold font-bold uppercase tracking-widest text-[9px] block mb-4">
               Direction
             </span>
-            <h4 className="text-2xl font-serif text-onyx italic mb-2 tracking-tight">
+            <h4 className="text-2xl font-serif text-background italic mb-2 tracking-tight">
               Noshaba Muhammad
             </h4>
-            <p className="text-[10px] text-onyx/40 uppercase tracking-[0.3em] font-bold">
+            <p className="text-[10px] text-background/40 uppercase tracking-[0.3em] font-bold">
               Managing Director
             </p>
 
             {/* Subtle Gold Divider */}
-            <div className="mt-8 w-12 h-[2px] bg-gold" />
+            <div className="mt-8 w-12 h-[2px] bg-secondary" />
           </div>
         </motion.div>
       </div>

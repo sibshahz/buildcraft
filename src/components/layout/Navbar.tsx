@@ -45,7 +45,7 @@ export const Navbar = () => {
         className={cn(
           'fixed top-0 left-0 w-full transition-all duration-700 px-6 md:px-12 z-[100]',
           scrolled
-            ? 'bg-[#FAF7F2]/95 backdrop-blur-md py-4 shadow-xl border-b border-gold/20'
+            ? 'bg-onyx/95 backdrop-blur-md py-4 shadow-xl border-b border-background/10'
             : 'bg-transparent py-8',
         )}
       >
@@ -55,7 +55,7 @@ export const Navbar = () => {
             <span
               className={cn(
                 'text-2xl md:text-3xl font-serif tracking-tight transition-colors duration-500',
-                scrolled ? 'text-onyx' : 'text-white',
+                scrolled ? 'text-background' : 'text-onyx',
               )}
             >
               BuildCraft
@@ -63,7 +63,7 @@ export const Navbar = () => {
             <span
               className={cn(
                 'text-[9px] uppercase tracking-[0.4em] font-bold transition-colors duration-500',
-                scrolled ? 'text-gold' : 'text-gold/90',
+                scrolled ? 'text-gold' : 'text-onyx/60',
               )}
             >
               Ajman • UAE
@@ -78,7 +78,7 @@ export const Navbar = () => {
                 href={link.href}
                 className={cn(
                   'text-[10px] uppercase tracking-[0.3em] font-bold transition-all duration-300 relative group',
-                  scrolled ? 'text-onyx hover:text-gold' : 'text-white/90 hover:text-white',
+                  scrolled ? 'text-background hover:text-gold' : 'text-onyx/80 hover:text-onyx',
                 )}
               >
                 {link.name}
@@ -94,12 +94,12 @@ export const Navbar = () => {
               className={cn(
                 'px-8 py-3 text-[10px] font-bold uppercase tracking-[0.3em] transition-all duration-500 border overflow-hidden relative group',
                 scrolled
-                  ? 'bg-gradient-to-tr from-gold via-gold-bright to-gold text-onyx border-gold shadow-[0_0_20px_-5px_rgba(229,192,94,0.4)] hover:shadow-[0_0_30px_-5px_rgba(229,192,94,0.7)] hover:scale-105'
-                  : 'bg-white/10 text-white border-white/20 backdrop-blur-sm hover:bg-white hover:text-onyx',
+                  ? 'bg-background text-onyx border-background hover:bg-gold hover:border-gold shadow-lg'
+                  : 'bg-onyx text-background border-onyx hover:bg-transparent hover:text-onyx shadow-xl',
               )}
             >
-              <div className="absolute inset-0 w-full h-full bg-white/20 -skew-x-[45deg] -translate-x-[200%] group-hover:translate-x-[200%] transition-transform duration-1000 ease-in-out" />
-              <span className="relative z-10">Inquire Now</span>
+              <div className="absolute inset-0 w-full h-full bg-white/10 -skew-x-[45deg] -translate-x-[200%] group-hover:translate-x-[200%] transition-transform duration-1000 ease-in-out" />
+              <span className="relative z-10 font-bold tracking-[0.3em]">Inquire Now</span>
             </Link>
           </div>
 
@@ -107,7 +107,7 @@ export const Navbar = () => {
           <button
             className={cn(
               'lg:hidden p-2 transition-colors duration-500',
-              scrolled ? 'text-onyx' : 'text-white',
+              scrolled ? 'text-background' : 'text-onyx',
             )}
             onClick={() => setIsOpen(!isOpen)}
           >
