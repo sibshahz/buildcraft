@@ -55,7 +55,7 @@ export const Navbar = () => {
             <span
               className={cn(
                 'text-2xl md:text-3xl font-serif tracking-tight transition-colors duration-500',
-                scrolled ? 'text-emerald' : 'text-white',
+                scrolled ? 'text-royal' : 'text-white',
               )}
             >
               BuildCraft
@@ -78,7 +78,7 @@ export const Navbar = () => {
                 href={link.href}
                 className={cn(
                   'text-[10px] uppercase tracking-[0.3em] font-bold transition-all duration-300 relative group',
-                  scrolled ? 'text-emerald hover:text-gold' : 'text-white/90 hover:text-white',
+                  scrolled ? 'text-royal hover:text-gold' : 'text-white/90 hover:text-white',
                 )}
               >
                 {link.name}
@@ -94,8 +94,8 @@ export const Navbar = () => {
               className={cn(
                 'px-8 py-3 text-[10px] font-bold uppercase tracking-[0.3em] transition-all duration-500 border',
                 scrolled
-                  ? 'bg-emerald text-sand border-emerald hover:bg-gold hover:border-gold'
-                  : 'bg-white/10 text-white border-white/20 backdrop-blur-sm hover:bg-white hover:text-emerald',
+                  ? 'bg-royal text-sand border-royal hover:bg-gold hover:border-gold'
+                  : 'bg-white/10 text-white border-white/20 backdrop-blur-sm hover:bg-white hover:text-royal',
               )}
             >
               Inquire Now
@@ -106,7 +106,7 @@ export const Navbar = () => {
           <button
             className={cn(
               'lg:hidden p-2 transition-colors duration-500',
-              scrolled ? 'text-emerald' : 'text-white',
+              scrolled ? 'text-royal' : 'text-white',
             )}
             onClick={() => setIsOpen(!isOpen)}
           >
@@ -122,7 +122,7 @@ export const Navbar = () => {
             initial={{ opacity: 0, scale: 1.1 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 1.1 }}
-            className="fixed inset-0 bg-emerald z-[110] lg:hidden flex flex-col p-12 overflow-y-auto"
+            className="fixed inset-0 bg-royal z-[110] lg:hidden flex flex-col p-12 overflow-y-auto"
           >
             {/* Decorative Grid Pattern Overlay */}
             <div className="absolute inset-0 opacity-10 pointer-events-none bg-[url('https://raw.githubusercontent.com/shadcn/ui/main/apps/www/public/examples/music-dark.png')] bg-repeat" />

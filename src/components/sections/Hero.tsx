@@ -20,7 +20,7 @@ export const Hero = () => {
   return (
     <section
       ref={containerRef}
-      className="relative h-screen min-h-[800px] flex items-center overflow-hidden bg-emerald"
+      className="relative h-screen min-h-[800px] flex items-center overflow-hidden bg-royal"
     >
       {/* Background Media with Heritage Overlay */}
       <motion.div style={{ y }} className="absolute inset-0 z-0 h-[130%]">
@@ -28,7 +28,7 @@ export const Hero = () => {
         <div className="absolute inset-0 z-[6] opacity-[0.03] bg-[url('https://www.transparenttextures.com/patterns/arabesque.png')] pointer-events-none" />
 
         {/* Cinematic Gradient: Emerald to Deep Shadow */}
-        <div className="absolute inset-0 bg-gradient-to-b from-emerald/40 via-emerald/80 to-emerald z-[5]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-royal/40 via-royal/80 to-royal z-[5]" />
         <div className="absolute inset-0 bg-black/20 z-[4]" />
 
         <Image
@@ -70,7 +70,7 @@ export const Hero = () => {
             <div className="flex flex-col sm:flex-row items-center space-y-6 sm:space-y-0 sm:space-x-8">
               <Link
                 href="/services"
-                className="group relative bg-gold text-emerald px-12 py-5 w-full sm:w-auto text-center font-bold uppercase tracking-[0.2em] text-[11px] overflow-hidden transition-all duration-500 hover:bg-sand"
+                className="group relative bg-gold text-royal px-12 py-5 w-full sm:w-auto text-center font-bold uppercase tracking-[0.2em] text-[11px] overflow-hidden transition-all duration-500 hover:bg-sand"
               >
                 <span className="relative z-10 flex items-center justify-center">
                   Explore Collections

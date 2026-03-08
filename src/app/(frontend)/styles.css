@@ -30,8 +30,8 @@
   --color-card: hsl(var(--card));
   --color-card-foreground: hsl(var(--card-foreground));
 
-  --color-emerald: #06392d;
-  --color-gold: #d4af37;
+  --color-royal: #1a1608;
+  --color-gold: #c5a021;
   --color-sand: #faf7f2;
   --color-pearl: #fdfcf9;
 
@@ -72,43 +72,43 @@
     --card-foreground: 0 0% 10%;
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 10%;
-    --primary: 45 64% 52%; /* #D4AF37 - Gold */
+    --primary: 46 71% 45%; /* #C5A021 - Royal Gold */
     --primary-foreground: 0 0% 100%;
-    --secondary: 166 80% 12%; /* #06392D - Emerald Green */
+    --secondary: 46 50% 6%; /* #1A1608 - Deep Royal Bronze */
     --secondary-foreground: 38 33% 96%;
     --muted: 0 0% 90%;
     --muted-foreground: 0 0% 40%;
-    --accent: 45 64% 52%;
+    --accent: 46 71% 45%;
     --accent-foreground: 0 0% 100%;
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
     --border: 0 0% 88%;
     --input: 0 0% 88%;
-    --ring: 166 80% 12%;
+    --ring: 46 71% 45%;
     --radius: 0px;
     --warm-beige: 45 40% 91%;
   }
 
   .dark {
-    --background: 166 80% 12%;
+    --background: 46 50% 6%;
     --foreground: 0 0% 98%;
-    --card: 166 80% 12%;
+    --card: 46 50% 6%;
     --card-foreground: 0 0% 98%;
-    --popover: 166 80% 12%;
+    --popover: 46 50% 6%;
     --popover-foreground: 0 0% 98%;
-    --primary: 45 64% 52%;
-    --primary-foreground: 166 80% 12%;
+    --primary: 46 71% 45%;
+    --primary-foreground: 46 50% 6%;
     --secondary: 0 0% 15%;
     --secondary-foreground: 0 0% 98%;
     --muted: 0 0% 20%;
     --muted-foreground: 0 0% 60%;
-    --accent: 45 64% 52%;
+    --accent: 46 71% 45%;
     --accent-foreground: 0 0% 98%;
     --destructive: 0 62% 30%;
     --destructive-foreground: 0 0% 98%;
     --border: 0 0% 20%;
     --input: 0 0% 20%;
-    --ring: 45 64% 52%;
+    --ring: 46 71% 45%;
   }
 }
 

@@ -26,12 +26,12 @@ export const AboutSection = () => {
             </span>
           </div>
 
-          <h2 className="text-5xl md:text-7xl font-serif text-emerald leading-[1.1] mb-12">
+          <h2 className="text-5xl md:text-7xl font-serif text-royal leading-[1.1] mb-12">
             Regional Expertise. <br />
             <span className="italic font-light">Global Quality.</span>
           </h2>
 
-          <div className="space-y-8 text-emerald/70 text-lg md:text-xl font-light leading-relaxed mb-12 font-outfit">
+          <div className="space-y-8 text-royal/70 text-lg md:text-xl font-light leading-relaxed mb-12 font-outfit">
             <p>
               Licensed under the **Ajman Free Zone**, BuildCraft Flooring & Décor stands as a
               testament to Emirati reliability and architectural excellence. We represent the
@@ -47,13 +47,13 @@ export const AboutSection = () => {
           <div className="grid grid-cols-2 gap-8 mb-16">
             <div className="flex flex-col">
               <span className="text-gold font-bold text-4xl font-serif mb-2">07</span>
-              <span className="text-[10px] uppercase tracking-widest text-emerald/40 font-bold">
+              <span className="text-[10px] uppercase tracking-widest text-royal/40 font-bold">
                 Emirates Served
               </span>
             </div>
             <div className="flex flex-col">
               <span className="text-gold font-bold text-4xl font-serif mb-2">100+</span>
-              <span className="text-[10px] uppercase tracking-widest text-emerald/40 font-bold">
+              <span className="text-[10px] uppercase tracking-widest text-royal/40 font-bold">
                 Elite Projects
               </span>
             </div>
@@ -61,7 +61,7 @@ export const AboutSection = () => {
 
           <Link
             href="/about"
-            className="group flex items-center text-emerald font-bold uppercase tracking-[0.3em] text-[10px] border-b border-gold/40 pb-3 hover:border-gold transition-all duration-300 self-start"
+            className="group flex items-center text-royal font-bold uppercase tracking-[0.3em] text-[10px] border-b border-gold/40 pb-3 hover:border-gold transition-all duration-300 self-start"
           >
             Explore Our Story
             <ArrowRight className="ml-3 w-4 h-4 transition-transform group-hover:translate-x-2" />
@@ -76,8 +76,8 @@ export const AboutSection = () => {
           className="relative"
         >
           {/* Main Image Frame */}
-          <div className="relative aspect-[4/5] w-full overflow-hidden bg-emerald p-6 shadow-2xl">
-            <div className="absolute inset-0 z-10 bg-emerald/10 opacity-40 group-hover:opacity-0 transition-opacity" />
+          <div className="relative aspect-[4/5] w-full overflow-hidden bg-royal p-6 shadow-2xl">
+            <div className="absolute inset-0 z-10 bg-royal/10 opacity-40 group-hover:opacity-0 transition-opacity" />
             <Image
               src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop"
               alt="Luxury Emirati Villa Interior"
@@ -87,14 +87,14 @@ export const AboutSection = () => {
           </div>
 
           {/* Leadership Signature Card */}
-          <div className="absolute -bottom-12 -left-3 md:-left-12 bg-white p-10 md:p-14 max-w-xs shadow-[0_30px_60px_-15px_rgba(6,57,45,0.2)]">
+          <div className="absolute -bottom-12 -left-3 md:-left-12 bg-white p-10 md:p-14 max-w-xs shadow-[0_30px_60px_-15px_rgba(26,22,8,0.2)]">
             <span className="text-gold font-bold uppercase tracking-widest text-[9px] block mb-4">
               Direction
             </span>
-            <h4 className="text-2xl font-serif text-emerald italic mb-2 tracking-tight">
+            <h4 className="text-2xl font-serif text-royal italic mb-2 tracking-tight">
               Noshaba Muhammad
             </h4>
-            <p className="text-[10px] text-emerald/40 uppercase tracking-[0.3em] font-bold">
+            <p className="text-[10px] text-royal/40 uppercase tracking-[0.3em] font-bold">
               Managing Director
             </p>
 

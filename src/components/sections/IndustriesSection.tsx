@@ -58,7 +58,7 @@ const industries = [
 
 export const IndustriesSection = () => {
   return (
-    <section className="py-24 md:py-48 bg-emerald text-sand overflow-hidden relative">
+    <section className="py-24 md:py-48 bg-royal text-sand overflow-hidden relative">
       {/* Decorative Grid Pattern Overlay */}
       <div className="absolute inset-0 opacity-[0.02] bg-[url('https://www.transparenttextures.com/patterns/arabesque.png')] pointer-events-none" />
 
@@ -88,7 +88,7 @@ export const IndustriesSection = () => {
             >
               <div className="relative h-[400px] w-full mb-8 overflow-hidden bg-white/5 border border-white/10 p-2">
                 {/* Main Image Overlay */}
-                <div className="absolute inset-0 z-10 bg-emerald/60 opacity-100 group-hover:opacity-0 transition-opacity duration-700" />
+                <div className="absolute inset-0 z-10 bg-royal/60 opacity-100 group-hover:opacity-0 transition-opacity duration-700" />
 
                 <Image
                   src={industry.image}
@@ -107,12 +107,12 @@ export const IndustriesSection = () => {
 
                 {/* Hover Content */}
                 <div className="absolute inset-0 z-30 bg-gold translate-y-full group-hover:translate-y-0 transition-transform duration-700 flex flex-col items-center justify-center p-12 text-center">
-                  <industry.icon className="w-12 h-12 text-emerald mb-8" />
-                  <h4 className="text-2xl font-serif text-emerald mb-6">{industry.title}</h4>
-                  <p className="text-emerald/70 text-sm leading-relaxed font-light">
+                  <industry.icon className="w-12 h-12 text-royal mb-8" />
+                  <h4 className="text-2xl font-serif text-royal mb-6">{industry.title}</h4>
+                  <p className="text-royal/70 text-sm leading-relaxed font-light">
                     {industry.description}
                   </p>
-                  <div className="mt-8 w-12 h-[1px] bg-emerald/20" />
+                  <div className="mt-8 w-12 h-[1px] bg-royal/20" />
                 </div>
               </div>
             </motion.div>
