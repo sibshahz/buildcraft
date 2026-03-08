@@ -1,15 +1,6 @@
 'use client'
 
-import {
-  Phone,
-  Mail,
-  MapPin,
-  Send,
-  Instagram,
-  ArrowRight,
-  MessageSquare,
-  Clock,
-} from 'lucide-react'
+import { Phone, Mail, MapPin, Send, Instagram, Clock } from 'lucide-react'
 import { CTASection } from '@/components/sections/CTASection'
 import React, { useState } from 'react'
 import { motion } from 'framer-motion'

@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
 import { CTASection } from '@/components/sections/CTASection'
-import { ArrowUpRight, Search, PlusCircle, Maximize2 } from 'lucide-react'
+import { ArrowUpRight, Maximize2 } from 'lucide-react'
 import Link from 'next/link'
 
 const categories = ['All', 'Hospitality', 'Residential', 'Corporate', 'Religious', 'SPC LVT']
