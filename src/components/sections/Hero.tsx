@@ -15,7 +15,6 @@ export const Hero = () => {
 
   // Deep smooth parallax
   const y = useTransform(scrollYProgress, [0, 1], ['0%', '30%'])
-  const opacity = useTransform(scrollYProgress, [0, 0.7], [1, 0])
 
   return (
     <section
