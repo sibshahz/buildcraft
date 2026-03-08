@@ -150,8 +150,8 @@ export default function IndustriesPage() {
             Cross-Sector Excellence
           </h2>
           <p className="text-brand-offwhite/60 text-lg leading-relaxed mb-0 font-light max-w-2xl mx-auto">
-            From the high-traffic corridors of Dubai's luxury hotels to the serene atmosphere of
-            regional mosques, our flooring solutions are engineered for specific performance and
+            From the high-traffic corridors of Dubai&apos;s luxury hotels to the serene atmosphere
+            of regional mosques, our flooring solutions are engineered for specific performance and
             aesthetic requirements.
           </p>
         </div>

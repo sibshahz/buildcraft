@@ -4,7 +4,7 @@ import React from 'react'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import { CTASection } from '@/components/sections/CTASection'
-import { BadgeCheck, Users, Target, Shield } from 'lucide-react'
+import { Users, Target, Shield } from 'lucide-react'
 
 const values = [
   {
@@ -159,8 +159,9 @@ export default function AboutPage() {
         <div className="max-w-4xl mx-auto px-6 text-center">
           <div className="w-24 h-1 bg-primary mb-12 mx-auto" />
           <blockquote className="text-3xl md:text-4xl font-light italic text-secondary leading-snug mb-12">
-            "Our mission is to provide flooring solutions that don't just cover ground, but set the
-            foundation for inspiration and architectural excellence throughout the UAE."
+            &ldquo;Our mission is to provide flooring solutions that don&apos;t just cover ground,
+            but set the foundation for inspiration and architectural excellence throughout the
+            UAE.&rdquo;
           </blockquote>
           <div className="flex flex-col items-center">
             <h4 className="text-lg font-bold text-secondary uppercase tracking-widest font-outfit">
