@@ -55,7 +55,7 @@ export const Navbar = () => {
             <span
               className={cn(
                 'text-2xl md:text-3xl font-serif tracking-tight transition-colors duration-500',
-                scrolled ? 'text-emerald' : 'text-white',
+                scrolled ? 'text-onyx' : 'text-white',
               )}
             >
               BuildCraft
@@ -78,7 +78,7 @@ export const Navbar = () => {
                 href={link.href}
                 className={cn(
                   'text-[10px] uppercase tracking-[0.3em] font-bold transition-all duration-300 relative group',
-                  scrolled ? 'text-emerald hover:text-gold' : 'text-white/90 hover:text-white',
+                  scrolled ? 'text-onyx hover:text-gold' : 'text-white/90 hover:text-white',
                 )}
               >
                 {link.name}
@@ -92,13 +92,14 @@ export const Navbar = () => {
             <Link
               href="/contact"
               className={cn(
-                'px-8 py-3 text-[10px] font-bold uppercase tracking-[0.3em] transition-all duration-500 border',
+                'px-8 py-3 text-[10px] font-bold uppercase tracking-[0.3em] transition-all duration-500 border overflow-hidden relative group',
                 scrolled
-                  ? 'bg-emerald text-sand border-emerald hover:bg-gold hover:border-gold'
-                  : 'bg-white/10 text-white border-white/20 backdrop-blur-sm hover:bg-white hover:text-emerald',
+                  ? 'bg-gradient-to-tr from-gold via-gold-bright to-gold text-onyx border-gold shadow-[0_0_20px_-5px_rgba(229,192,94,0.4)] hover:shadow-[0_0_30px_-5px_rgba(229,192,94,0.7)] hover:scale-105'
+                  : 'bg-white/10 text-white border-white/20 backdrop-blur-sm hover:bg-white hover:text-onyx',
               )}
             >
-              Inquire Now
+              <div className="absolute inset-0 w-full h-full bg-white/20 -skew-x-[45deg] -translate-x-[200%] group-hover:translate-x-[200%] transition-transform duration-1000 ease-in-out" />
+              <span className="relative z-10">Inquire Now</span>
             </Link>
           </div>
 
@@ -106,7 +107,7 @@ export const Navbar = () => {
           <button
             className={cn(
               'lg:hidden p-2 transition-colors duration-500',
-              scrolled ? 'text-emerald' : 'text-white',
+              scrolled ? 'text-onyx' : 'text-white',
             )}
             onClick={() => setIsOpen(!isOpen)}
           >
@@ -122,7 +123,7 @@ export const Navbar = () => {
             initial={{ opacity: 0, scale: 1.1 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 1.1 }}
-            className="fixed inset-0 bg-emerald z-[110] lg:hidden flex flex-col p-12 overflow-y-auto"
+            className="fixed inset-0 bg-onyx z-[110] lg:hidden flex flex-col p-12 overflow-y-auto"
           >
             {/* Decorative Grid Pattern Overlay */}
             <div className="absolute inset-0 opacity-10 pointer-events-none bg-[url('https://raw.githubusercontent.com/shadcn/ui/main/apps/www/public/examples/music-dark.png')] bg-repeat" />

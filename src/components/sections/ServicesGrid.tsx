@@ -90,7 +90,7 @@ export const ServicesGrid = () => {
               Our Expertise
             </span>
           </div>
-          <h2 className="text-5xl md:text-7xl font-serif text-emerald leading-tight">
+          <h2 className="text-5xl md:text-7xl font-serif text-onyx leading-tight">
             Comprehensive <br />
             <span className="italic font-light">Flooring Masterpieces.</span>
           </h2>
@@ -117,11 +117,11 @@ export const ServicesGrid = () => {
                   className="object-cover transition-transform duration-1000 group-hover:scale-110 grayscale-[10%] group-hover:grayscale-0 shadow-xl"
                 />
                 {/* Decorative Frame Overlay */}
-                <div className="absolute inset-0 border-[0px] group-hover:border-[12px] border-emerald/10 transition-all duration-700 pointer-events-none" />
+                <div className="absolute inset-0 border-[0px] group-hover:border-[12px] border-onyx/10 transition-all duration-700 pointer-events-none" />
 
                 {/* Reveal Arrow */}
                 <div className="absolute bottom-6 right-6 w-12 h-12 bg-gold flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0 shadow-lg">
-                  <ArrowUpRight className="w-6 h-6 text-emerald" />
+                  <ArrowUpRight className="w-6 h-6 text-onyx" />
                 </div>
               </Link>
 
@@ -129,10 +129,10 @@ export const ServicesGrid = () => {
                 <span className="text-gold font-bold uppercase tracking-widest text-[9px] mb-3">
                   {service.category}
                 </span>
-                <h3 className="text-2xl font-serif text-emerald mb-4 group-hover:text-gold transition-colors duration-300">
+                <h3 className="text-2xl font-serif text-onyx mb-4 group-hover:text-gold transition-colors duration-300">
                   {service.title}
                 </h3>
-                <p className="text-emerald/60 text-sm leading-relaxed font-light line-clamp-2">
+                <p className="text-onyx/60 text-sm leading-relaxed font-light line-clamp-2">
                   {service.description}
                 </p>
 
@@ -142,13 +142,13 @@ export const ServicesGrid = () => {
           ))}
         </div>
 
-        <div className="mt-24 pt-16 border-t border-emerald/5 flex justify-center">
+        <div className="mt-24 pt-16 border-t border-onyx/5 flex justify-center">
           <Link href="/services" className="group flex flex-col items-center space-y-4">
-            <span className="text-[10px] uppercase tracking-[0.4em] font-bold text-emerald/40 group-hover:text-gold transition-colors">
+            <span className="text-[10px] uppercase tracking-[0.4em] font-bold text-onyx/40 group-hover:text-gold transition-colors">
               Discover the Full Portfolio
             </span>
-            <div className="w-12 h-12 rounded-full border border-emerald/10 flex items-center justify-center group-hover:bg-emerald group-hover:border-emerald transition-all duration-500">
-              <ArrowUpRight className="w-5 h-5 text-emerald group-hover:text-gold" />
+            <div className="w-12 h-12 rounded-full border border-onyx/10 flex items-center justify-center group-hover:bg-onyx group-hover:border-onyx transition-all duration-500">
+              <ArrowUpRight className="w-5 h-5 text-onyx group-hover:text-gold" />
             </div>
           </Link>
         </div>

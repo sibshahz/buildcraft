@@ -20,7 +20,7 @@ export const Hero = () => {
   return (
     <section
       ref={containerRef}
-      className="relative h-screen min-h-[800px] flex items-center overflow-hidden bg-emerald"
+      className="relative h-screen min-h-[800px] flex items-center overflow-hidden bg-onyx"
     >
       {/* Background Media with Heritage Overlay */}
       <motion.div style={{ y }} className="absolute inset-0 z-0 h-[130%]">
@@ -28,7 +28,7 @@ export const Hero = () => {
         <div className="absolute inset-0 z-[6] opacity-[0.03] bg-[url('https://www.transparenttextures.com/patterns/arabesque.png')] pointer-events-none" />
 
         {/* Cinematic Gradient: Emerald to Deep Shadow */}
-        <div className="absolute inset-0 bg-gradient-to-b from-emerald/40 via-emerald/80 to-emerald z-[5]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-onyx/40 via-onyx/80 to-onyx z-[5]" />
         <div className="absolute inset-0 bg-black/20 z-[4]" />
 
         <Image
@@ -70,8 +70,11 @@ export const Hero = () => {
             <div className="flex flex-col sm:flex-row items-center space-y-6 sm:space-y-0 sm:space-x-8">
               <Link
                 href="/services"
-                className="group relative bg-gold text-emerald px-12 py-5 w-full sm:w-auto text-center font-bold uppercase tracking-[0.2em] text-[11px] overflow-hidden transition-all duration-500 hover:bg-sand"
+                className="group relative bg-gradient-to-tr from-gold via-gold-bright to-gold text-onyx px-12 py-5 w-full sm:w-auto text-center font-bold uppercase tracking-[0.2em] text-[11px] overflow-hidden transition-all duration-500 shadow-[0_0_30px_-5px_rgba(229,192,94,0.3)] hover:shadow-[0_0_50px_-5px_rgba(229,192,94,0.6)] hover:scale-105"
               >
+                {/* Flashy Shimmer Effect */}
+                <div className="absolute inset-0 w-1/2 h-full bg-white/20 -skew-x-[45deg] -translate-x-[150%] group-hover:translate-x-[250%] transition-transform duration-1000 ease-in-out" />
+
                 <span className="relative z-10 flex items-center justify-center">
                   Explore Collections
                   <ArrowRight className="ml-3 w-4 h-4 transition-transform group-hover:translate-x-1" />
@@ -79,7 +82,7 @@ export const Hero = () => {
               </Link>
               <Link
                 href="/contact"
-                className="group border border-sand/20 text-sand px-12 py-5 w-full sm:w-auto text-center font-bold uppercase tracking-[0.2em] text-[11px] hover:bg-sand/10 transition-all duration-500 backdrop-blur-sm"
+                className="group border-2 border-gold/40 text-sand px-12 py-5 w-full sm:w-auto text-center font-bold uppercase tracking-[0.2em] text-[11px] hover:bg-gold hover:text-onyx transition-all duration-500 backdrop-blur-sm"
               >
                 Request Consultation
               </Link>

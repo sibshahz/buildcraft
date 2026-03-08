@@ -30,7 +30,7 @@ export const Footer = () => {
   }
 
   return (
-    <footer className="bg-emerald text-sand pt-32 pb-16 relative overflow-hidden">
+    <footer className="bg-onyx text-sand pt-32 pb-16 relative overflow-hidden">
       {/* Decorative Heritage Pattern */}
       <div className="absolute bottom-0 right-0 w-1/2 h-1/2 opacity-[0.03] bg-[url('https://www.transparenttextures.com/patterns/arabesque.png')] pointer-events-none" />
 
@@ -59,13 +59,13 @@ export const Footer = () => {
               rel="noopener noreferrer"
               className="w-12 h-12 border border-sand/20 flex items-center justify-center rounded-full hover:bg-gold hover:border-gold group transition-all duration-500"
             >
-              <Instagram className="w-5 h-5 text-sand group-hover:text-emerald transition-colors" />
+              <Instagram className="w-5 h-5 text-sand group-hover:text-onyx transition-colors" />
             </a>
             <a
               href="mailto:sales@buildcraftflooring.ae"
               className="w-12 h-12 border border-sand/20 flex items-center justify-center rounded-full hover:bg-gold hover:border-gold group transition-all duration-500"
             >
-              <Mail className="w-5 h-5 text-sand group-hover:text-emerald transition-colors" />
+              <Mail className="w-5 h-5 text-sand group-hover:text-onyx transition-colors" />
             </a>
           </div>
         </div>
