@@ -320,6 +320,39 @@ export interface Page {
         blockName?: string | null;
         blockType: 'cta';
       }
+    | {
+        heading?: string | null;
+        subheading?: string | null;
+        collection: 'services' | 'projects' | 'industries';
+        limit?: number | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'archive';
+      }
+    | {
+        stats: {
+          value: string;
+          label: string;
+          id?: string | null;
+        }[];
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'stats';
+      }
+    | {
+        heading?: string | null;
+        subheading?: string | null;
+        steps?:
+          | {
+              title: string;
+              description: string;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'process';
+      }
   )[];
   updatedAt: string;
   createdAt: string;
@@ -571,6 +604,44 @@ export interface PagesSelect<T extends boolean = true> {
               subheading?: T;
               buttonText?: T;
               buttonLink?: T;
+              id?: T;
+              blockName?: T;
+            };
+        archive?:
+          | T
+          | {
+              heading?: T;
+              subheading?: T;
+              collection?: T;
+              limit?: T;
+              id?: T;
+              blockName?: T;
+            };
+        stats?:
+          | T
+          | {
+              stats?:
+                | T
+                | {
+                    value?: T;
+                    label?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        process?:
+          | T
+          | {
+              heading?: T;
+              subheading?: T;
+              steps?:
+                | T
+                | {
+                    title?: T;
+                    description?: T;
+                    id?: T;
+                  };
               id?: T;
               blockName?: T;
             };

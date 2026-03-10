@@ -6,14 +6,20 @@ import { ValuesBlock } from './Values'
 import { QuoteBlock } from './Quote'
 import { TwoColumnBlock } from './TwoColumn'
 import { CTABlock } from './CTA'
+import { ArchiveBlock } from './Archive'
+import { StatsBlock } from './Stats'
+import { ProcessBlock } from './Process'
 
-const blockComponents: Record<string, React.FC<any>> = {
+const blockComponents: Record<string, any> = {
   hero: HeroBlock,
   content: ContentBlock,
   values: ValuesBlock,
   quote: QuoteBlock,
   twoColumn: TwoColumnBlock,
   cta: CTABlock,
+  archive: ArchiveBlock,
+  stats: StatsBlock,
+  process: ProcessBlock,
 }
 
 export const BlockRenderer: React.FC<{ blocks: Page['layout'] }> = ({ blocks }) => {

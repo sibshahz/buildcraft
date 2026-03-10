@@ -76,6 +76,60 @@ const CTABlock: Block = {
   ],
 }
 
+const ArchiveBlock: Block = {
+  slug: 'archive',
+  fields: [
+    { name: 'heading', type: 'text' },
+    { name: 'subheading', type: 'textarea' },
+    {
+      name: 'collection',
+      type: 'select',
+      required: true,
+      options: [
+        { label: 'Services', value: 'services' },
+        { label: 'Projects', value: 'projects' },
+        { label: 'Industries', value: 'industries' },
+      ],
+    },
+    {
+      name: 'limit',
+      type: 'number',
+      defaultValue: 6,
+    },
+  ],
+}
+
+const StatsBlock: Block = {
+  slug: 'stats',
+  fields: [
+    {
+      name: 'stats',
+      type: 'array',
+      required: true,
+      fields: [
+        { name: 'value', type: 'text', required: true },
+        { name: 'label', type: 'text', required: true },
+      ],
+    },
+  ],
+}
+
+const ProcessBlock: Block = {
+  slug: 'process',
+  fields: [
+    { name: 'heading', type: 'text' },
+    { name: 'subheading', type: 'textarea' },
+    {
+      name: 'steps',
+      type: 'array',
+      fields: [
+        { name: 'title', type: 'text', required: true },
+        { name: 'description', type: 'textarea', required: true },
+      ],
+    },
+  ],
+}
+
 export const Pages: CollectionConfig = {
   slug: 'pages',
   admin: {
@@ -102,7 +156,17 @@ export const Pages: CollectionConfig = {
     {
       name: 'layout',
       type: 'blocks',
-      blocks: [HeroBlock, ContentBlock, TwoColumnBlock, ValuesBlock, QuoteBlock, CTABlock],
+      blocks: [
+        HeroBlock,
+        ContentBlock,
+        TwoColumnBlock,
+        ValuesBlock,
+        QuoteBlock,
+        CTABlock,
+        ArchiveBlock,
+        StatsBlock,
+        ProcessBlock,
+      ],
       required: true,
     },
   ],
