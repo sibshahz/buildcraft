@@ -6,8 +6,9 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowRight, Building, Home, Hotel, Building2, Store } from 'lucide-react'
 import { Industry, Media } from '@/payload-types'
+import { LucideIcon } from 'lucide-react'
 
-const iconMap: Record<string, any> = {
+const iconMap: Record<string, LucideIcon> = {
   hotel: Hotel,
   office: Building,
   villa: Home,
