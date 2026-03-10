@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X, Instagram } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import type { SiteSetting } from '@/payload-types'
 
 const navLinks = [
   { name: 'Home', href: '/' },
@@ -15,7 +16,7 @@ const navLinks = [
   { name: 'Contact', href: '/contact' },
 ]
 
-export const Navbar = () => {
+export const Navbar = ({ settings }: { settings: SiteSetting }) => {
   const [isOpen, setIsOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
 
@@ -168,19 +169,29 @@ export const Navbar = () => {
                   Liaise With Us
                 </span>
                 <a
-                  href="tel:+971564961186"
+                  href={`tel:${settings.phone}`}
                   className="text-xl text-sand hover:text-gold transition-colors"
                 >
-                  +971 56 496 1186
+                  {settings.phone}
                 </a>
               </div>
               <div className="flex items-center space-x-6">
-                <a
-                  href="https://instagram.com/buildcraftflooring"
-                  className="text-sand border border-sand/20 p-3 rounded-full hover:bg-gold hover:border-gold transition-all"
-                >
-                  <Instagram className="w-5 h-5" />
-                </a>
+                {(settings.socialLinks || []).map((link) => {
+                  if (link.platform === 'instagram') {
+                    return (
+                      <a
+                        key={link.id}
+                        href={link.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-sand border border-sand/20 p-3 rounded-full hover:bg-gold hover:border-gold transition-all"
+                      >
+                        <Instagram className="w-5 h-5" />
+                      </a>
+                    )
+                  }
+                  return null
+                })}
               </div>
             </div>
           </motion.div>

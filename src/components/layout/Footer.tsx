@@ -2,7 +2,17 @@
 
 import React from 'react'
 import Link from 'next/link'
-import { Instagram, Mail, MapPin, Phone, ArrowUp } from 'lucide-react'
+import {
+  Instagram,
+  Mail,
+  MapPin,
+  Phone,
+  ArrowUp,
+  Facebook,
+  Linkedin,
+  MessageCircle,
+} from 'lucide-react'
+import type { SiteSetting } from '@/payload-types'
 
 const services = [
   'Wall-to-wall carpets',
@@ -24,7 +34,7 @@ const industries = [
   'Institutional Projects',
 ]
 
-export const Footer = () => {
+export const Footer = ({ settings }: { settings: SiteSetting }) => {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
@@ -53,16 +63,26 @@ export const Footer = () => {
             carpeting across the United Arab Emirates since our inception.
           </p>
           <div className="flex space-x-4">
+            {(settings.socialLinks || []).map((link) => {
+              let Icon = Instagram
+              if (link.platform === 'facebook') Icon = Facebook
+              if (link.platform === 'linkedin') Icon = Linkedin
+              if (link.platform === 'whatsapp') Icon = MessageCircle
+
+              return (
+                <a
+                  key={link.id}
+                  href={link.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-12 h-12 border border-sand/20 flex items-center justify-center rounded-full hover:bg-gold hover:border-gold group transition-all duration-500"
+                >
+                  <Icon className="w-5 h-5 text-sand group-hover:text-onyx transition-colors" />
+                </a>
+              )
+            })}
             <a
-              href="https://instagram.com/buildcraftflooring"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-12 h-12 border border-sand/20 flex items-center justify-center rounded-full hover:bg-gold hover:border-gold group transition-all duration-500"
-            >
-              <Instagram className="w-5 h-5 text-sand group-hover:text-onyx transition-colors" />
-            </a>
-            <a
-              href="mailto:sales@buildcraftflooring.ae"
+              href={`mailto:${settings.email}`}
               className="w-12 h-12 border border-sand/20 flex items-center justify-center rounded-full hover:bg-gold hover:border-gold group transition-all duration-500"
             >
               <Mail className="w-5 h-5 text-sand group-hover:text-onyx transition-colors" />
@@ -120,9 +140,12 @@ export const Footer = () => {
                 <span className="text-[9px] text-sand/20 uppercase tracking-[0.2em] font-bold mb-2">
                   Direct Line
                 </span>
-                <span className="text-lg font-serif italic text-sand hover:text-gold transition-colors cursor-pointer">
-                  +971 56 496 1186
-                </span>
+                <a
+                  href={`tel:${settings.phone}`}
+                  className="text-lg font-serif italic text-sand hover:text-gold transition-colors cursor-pointer"
+                >
+                  {settings.phone}
+                </a>
               </div>
             </div>
             <div className="flex items-start space-x-6">
@@ -131,9 +154,7 @@ export const Footer = () => {
                 <span className="text-[9px] text-sand/20 uppercase tracking-[0.2em] font-bold mb-2">
                   Regional HQ
                 </span>
-                <span className="text-sm font-light text-sand/80">
-                  Ajman Free Zone, United Arab Emirates
-                </span>
+                <span className="text-sm font-light text-sand/80">{settings.address}</span>
               </div>
             </div>
 
@@ -152,7 +173,7 @@ export const Footer = () => {
 
       <div className="max-w-7xl mx-auto px-6 md:px-12 pt-12 flex flex-col md:flex-row justify-between items-center text-sand/20 text-[10px] uppercase tracking-[0.3em] font-bold relative z-10">
         <p>
-          &copy; {new Date().getFullYear()} BuildCraft Flooring & Décor. Architectural Precision.
+          &copy; {new Date().getFullYear()} {settings.copyright}
         </p>
         <p className="mt-6 md:mt-0 opacity-40">Licensed in the United Arab Emirates</p>
       </div>

@@ -24,6 +24,9 @@ const cormorant = Cormorant_Garamond({
   style: 'italic',
 })
 
+import configPromise from '@payload-config'
+import { getPayload } from 'payload'
+
 export const metadata = {
   description:
     'Premium flooring solutions in UAE - carpets, tiles, and LVT flooring for hospitality, offices, and residential spaces.',
@@ -39,15 +42,20 @@ export const metadata = {
 export default async function RootLayout(props: { children: React.ReactNode }) {
   const { children } = props
 
+  const payload = await getPayload({ config: configPromise })
+  const siteSettings = await payload.findGlobal({
+    slug: 'site-settings',
+  })
+
   return (
     <html
       lang="en"
       className={`${inter.variable} ${outfit.variable} ${cormorant.variable} scroll-smooth`}
     >
       <body className="font-sans antialiased text-secondary bg-[#FAF7F2] selection:bg-primary/30 selection:text-secondary">
-        <Navbar />
+        <Navbar settings={siteSettings} />
         <main className="min-h-screen">{children}</main>
-        <Footer />
+        <Footer settings={siteSettings} />
       </body>
     </html>
   )
