@@ -4,7 +4,7 @@ import configPromise from '@payload-config'
 import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowUpRight } from 'lucide-react'
-import { Page, Media, Service, Project, Industry } from '@/payload-types'
+import { Page, Media } from '@/payload-types'
 
 type ArchiveProps = Extract<Page['layout'][0], { blockType: 'archive' }>
 

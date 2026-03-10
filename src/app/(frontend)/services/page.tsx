@@ -3,9 +3,7 @@ import { getPayload } from 'payload'
 import configPromise from '@payload-config'
 import Image from 'next/image'
 import Link from 'next/link'
-import { ArrowUpRight } from 'lucide-react'
 import { CTASection } from '@/components/sections/CTASection'
-import { Media } from '@/payload-types'
 import { ServiceCard } from './ServiceCard'
 
 export default async function ServicesPage() {
