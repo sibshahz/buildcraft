@@ -13,6 +13,8 @@ import { Projects } from './collections/Projects'
 import { Pages } from './collections/Pages'
 import { SiteSettings } from './globals/SiteSettings'
 
+import { cloudinaryStorage } from 'payload-cloudinary'
+
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
@@ -36,5 +38,24 @@ export default buildConfig({
     },
   }),
   sharp,
-  plugins: [],
+  plugins: [
+    ...(process.env.CLOUDINARY_CLOUD_NAME &&
+    process.env.CLOUDINARY_API_KEY &&
+    (process.env.CLOUDINARY_API_SECRET || process.env.CLOUDINARY_KEY)
+      ? [
+          cloudinaryStorage({
+            config: {
+              cloud_name: process.env.CLOUDINARY_CLOUD_NAME as string,
+              api_key: process.env.CLOUDINARY_API_KEY as string,
+              api_secret: (process.env.CLOUDINARY_API_SECRET ||
+                process.env.CLOUDINARY_KEY) as string,
+            },
+            collections: {
+              media: true,
+            },
+            disableLocalStorage: true,
+          }),
+        ]
+      : []),
+  ],
 })

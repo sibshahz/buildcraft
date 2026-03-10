@@ -12,7 +12,8 @@ import {
   Linkedin,
   MessageCircle,
 } from 'lucide-react'
-import type { SiteSetting } from '@/payload-types'
+import type { Media, SiteSetting } from '@/payload-types'
+import Image from 'next/image'
 
 const services = [
   'Wall-to-wall carpets',
@@ -49,14 +50,25 @@ export const Footer = ({ settings }: { settings: SiteSetting }) => {
         <div className="flex flex-col space-y-10">
           <Link
             href="/"
-            className="flex flex-col group transition-transform duration-500 hover:scale-105"
+            className="flex items-center space-x-4 group transition-transform duration-500 hover:scale-105"
           >
-            <span className="text-4xl font-serif tracking-tight text-sand group-hover:text-gold transition-colors">
-              BuildCraft
-            </span>
-            <span className="text-[10px] uppercase tracking-[0.4em] text-gold font-bold mt-2">
-              Ajman • UAE
-            </span>
+            {settings.logo && typeof settings.logo === 'object' ? (
+              <Image
+                src={(settings.logo as Media).url || ''}
+                alt="BuildCraft Logo"
+                width={48}
+                height={48}
+                className="w-12 h-12 object-contain"
+              />
+            ) : null}
+            <div className="flex flex-col">
+              <span className="text-4xl font-serif tracking-tight text-sand group-hover:text-gold transition-colors">
+                BuildCraft
+              </span>
+              <span className="text-[10px] uppercase tracking-[0.4em] text-gold font-bold mt-2">
+                Ajman • UAE
+              </span>
+            </div>
           </Link>
           <p className="text-sand/40 text-sm leading-relaxed max-w-xs font-light">
             Licensed in Ajman Free Zone, providing elite architectural flooring and bespoke

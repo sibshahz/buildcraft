@@ -4,8 +4,14 @@ import { Phone, Mail, MapPin, Send, Instagram, Clock } from 'lucide-react'
 import { CTASection } from '@/components/sections/CTASection'
 import React, { useState } from 'react'
 import { motion } from 'framer-motion'
+import { useSiteSettings } from '@/providers/SiteSettingsContext'
 
 export default function ContactPage() {
+  const { phone, email, address, socialLinks } = useSiteSettings()
+  const instagramLink =
+    socialLinks?.find((link) => link.platform === 'instagram')?.url ||
+    'https://instagram.com/buildcraftflooring'
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -82,10 +88,10 @@ export default function ContactPage() {
                     Direct Line
                   </span>
                   <a
-                    href="tel:+971564961186"
+                    href={`tel:${phone}`}
                     className="text-xl font-bold text-secondary tracking-widest hover:text-primary transition-colors"
                   >
-                    +971 56 496 1186
+                    {phone}
                   </a>
                 </div>
               </div>
@@ -100,10 +106,10 @@ export default function ContactPage() {
                     Email Sales
                   </span>
                   <a
-                    href="mailto:sales@buildcraftflooring.ae"
+                    href={`mailto:${email}`}
                     className="text-xl font-bold text-secondary tracking-widest hover:text-primary transition-colors"
                   >
-                    sales@buildcraftflooring.ae
+                    {email}
                   </a>
                 </div>
               </div>
@@ -118,7 +124,7 @@ export default function ContactPage() {
                     Location
                   </span>
                   <span className="text-xl font-bold text-secondary tracking-widest">
-                    Ajman Free Zone, UAE
+                    {address}
                   </span>
                 </div>
               </div>
@@ -144,7 +150,7 @@ export default function ContactPage() {
                 Follow Us
               </span>
               <a
-                href="https://instagram.com/buildcraftflooring"
+                href={instagramLink}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center space-x-4 text-secondary hover:text-primary transition-colors"
@@ -299,10 +305,8 @@ export default function ContactPage() {
 
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white p-8 md:p-12 shadow-2xl z-20 text-center max-w-xs flex flex-col items-center">
           <MapPin className="w-10 h-10 text-primary mb-6" />
-          <h4 className="font-bold text-secondary font-outfit text-xl mb-4">Ajman Free Zone</h4>
-          <p className="text-secondary/60 text-xs uppercase tracking-widest font-bold">
-            Ajman, UAE
-          </p>
+          <h4 className="font-bold text-secondary font-outfit text-xl mb-4">Our Gallery</h4>
+          <p className="text-secondary/60 text-xs uppercase tracking-widest font-bold">{address}</p>
         </div>
       </section>
 

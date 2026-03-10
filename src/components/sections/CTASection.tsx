@@ -4,8 +4,10 @@ import React from 'react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { ArrowRight, Phone, Mail } from 'lucide-react'
+import { useSiteSettings } from '@/providers/SiteSettingsContext'
 
 export const CTASection = () => {
+  const { phone, email } = useSiteSettings()
   return (
     <section className="py-24 md:py-48 bg-pearl relative overflow-hidden flex items-center justify-center">
       <div className="absolute inset-x-0 bottom-0 h-1/2 bg-onyx z-0" />
@@ -62,9 +64,12 @@ export const CTASection = () => {
                     <span className="text-[10px] uppercase font-bold text-sand/40 group-hover:text-onyx/40 tracking-[0.3em] mb-2">
                       Concierge Call
                     </span>
-                    <span className="text-2xl font-serif text-sand group-hover:text-onyx transition-colors">
-                      +971 56 496 1186
-                    </span>
+                    <a
+                      href={`tel:${phone}`}
+                      className="text-2xl font-serif text-sand group-hover:text-onyx transition-colors"
+                    >
+                      {phone}
+                    </a>
                   </div>
                 </div>
               </div>
@@ -78,9 +83,12 @@ export const CTASection = () => {
                     <span className="text-[10px] uppercase font-bold text-sand/40 group-hover:text-onyx/40 tracking-[0.3em] mb-2">
                       Electronic Liaison
                     </span>
-                    <span className="text-xl font-serif text-sand group-hover:text-onyx transition-colors break-all">
-                      sales@buildcraftflooring.ae
-                    </span>
+                    <a
+                      href={`mailto:${email}`}
+                      className="text-xl font-serif text-sand group-hover:text-onyx transition-colors break-all"
+                    >
+                      {email}
+                    </a>
                   </div>
                 </div>
               </div>

@@ -3,9 +3,10 @@
 import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Menu, X, Instagram } from 'lucide-react'
+import { Menu, X, Instagram, Facebook, Linkedin, MessageCircle } from 'lucide-react'
 import { cn } from '@/lib/utils'
-import type { SiteSetting } from '@/payload-types'
+import type { Media, SiteSetting } from '@/payload-types'
+import Image from 'next/image'
 
 const navLinks = [
   { name: 'Home', href: '/' },
@@ -15,6 +16,13 @@ const navLinks = [
   { name: 'Projects', href: '/projects' },
   { name: 'Contact', href: '/contact' },
 ]
+
+const IconMap: { [key: string]: any } = {
+  instagram: Instagram,
+  facebook: Facebook,
+  linkedin: Linkedin,
+  whatsapp: MessageCircle,
+}
 
 export const Navbar = ({ settings }: { settings: SiteSetting }) => {
   const [isOpen, setIsOpen] = useState(false)
@@ -52,23 +60,34 @@ export const Navbar = ({ settings }: { settings: SiteSetting }) => {
       >
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="group flex flex-col">
-            <span
-              className={cn(
-                'text-2xl md:text-3xl font-serif tracking-tight transition-colors duration-500',
-                scrolled ? 'text-onyx' : 'text-white',
-              )}
-            >
-              BuildCraft
-            </span>
-            <span
-              className={cn(
-                'text-[9px] uppercase tracking-[0.4em] font-bold transition-colors duration-500',
-                scrolled ? 'text-gold' : 'text-gold/90',
-              )}
-            >
-              Ajman • UAE
-            </span>
+          <Link href="/" className="group flex items-center space-x-3">
+            {settings.logo && typeof settings.logo === 'object' ? (
+              <Image
+                src={(settings.logo as Media).url || ''}
+                alt="BuildCraft Logo"
+                width={40}
+                height={40}
+                className="w-10 h-10 object-contain"
+              />
+            ) : null}
+            <div className="flex flex-col">
+              <span
+                className={cn(
+                  'text-2xl md:text-3xl font-serif tracking-tight transition-colors duration-500',
+                  scrolled ? 'text-onyx' : 'text-white',
+                )}
+              >
+                BuildCraft
+              </span>
+              <span
+                className={cn(
+                  'text-[9px] uppercase tracking-[0.4em] font-bold transition-colors duration-500',
+                  scrolled ? 'text-gold' : 'text-gold/90',
+                )}
+              >
+                Ajman • UAE
+              </span>
+            </div>
           </Link>
 
           {/* Desktop Links */}
@@ -130,11 +149,22 @@ export const Navbar = ({ settings }: { settings: SiteSetting }) => {
             <div className="absolute inset-0 opacity-10 pointer-events-none bg-[url('https://raw.githubusercontent.com/shadcn/ui/main/apps/www/public/examples/music-dark.png')] bg-repeat" />
 
             <div className="flex justify-between items-center mb-20 relative z-10">
-              <div className="flex flex-col">
-                <span className="text-3xl font-serif text-sand">BuildCraft</span>
-                <span className="text-[10px] uppercase tracking-[0.4em] text-gold mt-1">
-                  Flooring & Décor
-                </span>
+              <div className="flex items-center space-x-4">
+                {settings.logo && typeof settings.logo === 'object' ? (
+                  <Image
+                    src={(settings.logo as Media).url || ''}
+                    alt="BuildCraft Logo"
+                    width={48}
+                    height={48}
+                    className="w-12 h-12 object-contain"
+                  />
+                ) : null}
+                <div className="flex flex-col">
+                  <span className="text-3xl font-serif text-sand">BuildCraft</span>
+                  <span className="text-[10px] uppercase tracking-[0.4em] text-gold mt-1">
+                    Flooring & Décor
+                  </span>
+                </div>
               </div>
               <button
                 onClick={() => setIsOpen(false)}
@@ -177,20 +207,20 @@ export const Navbar = ({ settings }: { settings: SiteSetting }) => {
               </div>
               <div className="flex items-center space-x-6">
                 {(settings.socialLinks || []).map((link) => {
-                  if (link.platform === 'instagram') {
-                    return (
-                      <a
-                        key={link.id}
-                        href={link.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-sand border border-sand/20 p-3 rounded-full hover:bg-gold hover:border-gold transition-all"
-                      >
-                        <Instagram className="w-5 h-5" />
-                      </a>
-                    )
-                  }
-                  return null
+                  const Icon = IconMap[link.platform]
+                  if (!Icon) return null
+
+                  return (
+                    <a
+                      key={link.id}
+                      href={link.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sand border border-sand/20 p-3 rounded-full hover:bg-gold hover:border-gold transition-all"
+                    >
+                      <Icon className="w-5 h-5" />
+                    </a>
+                  )
                 })}
               </div>
             </div>

@@ -37,6 +37,18 @@ export const SiteSettings: GlobalConfig = {
               required: true,
               label: 'Office Address',
             },
+            {
+              name: 'mdName',
+              type: 'text',
+              defaultValue: 'Noshaba Muhammad',
+              label: 'Managing Director Name',
+            },
+            {
+              name: 'mdTitle',
+              type: 'text',
+              defaultValue: 'Managing Director',
+              label: 'Managing Director Title',
+            },
           ],
         },
         {

@@ -2,6 +2,7 @@ import React from 'react'
 import { Inter, Outfit, Cormorant_Garamond } from 'next/font/google'
 import { Navbar } from '@/components/layout/Navbar'
 import { Footer } from '@/components/layout/Footer'
+import { SiteSettingsProvider } from '@/providers/SiteSettingsContext'
 import './styles.css'
 
 const inter = Inter({
@@ -53,9 +54,11 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
       className={`${inter.variable} ${outfit.variable} ${cormorant.variable} scroll-smooth`}
     >
       <body className="font-sans antialiased text-secondary bg-[#FAF7F2] selection:bg-primary/30 selection:text-secondary">
-        <Navbar settings={siteSettings} />
-        <main className="min-h-screen">{children}</main>
-        <Footer settings={siteSettings} />
+        <SiteSettingsProvider settings={siteSettings}>
+          <Navbar settings={siteSettings} />
+          <main className="min-h-screen">{children}</main>
+          <Footer settings={siteSettings} />
+        </SiteSettingsProvider>
       </body>
     </html>
   )

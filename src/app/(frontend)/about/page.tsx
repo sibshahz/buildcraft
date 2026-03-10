@@ -5,6 +5,7 @@ import { motion } from 'framer-motion'
 import Image from 'next/image'
 import { CTASection } from '@/components/sections/CTASection'
 import { Users, Target, Shield } from 'lucide-react'
+import { useSiteSettings } from '@/providers/SiteSettingsContext'
 
 const values = [
   {
@@ -27,6 +28,7 @@ const values = [
 ]
 
 export default function AboutPage() {
+  const { address, mdName, mdTitle } = useSiteSettings()
   return (
     <div className="flex flex-col">
       {/* Page Header */}
@@ -92,7 +94,7 @@ export default function AboutPage() {
                 <h4 className="font-bold text-secondary mb-2 uppercase tracking-widest text-xs">
                   Based In
                 </h4>
-                <p className="text-secondary/60 text-sm">Ajman Free Zone, UAE</p>
+                <p className="text-secondary/60 text-sm">{address}</p>
               </div>
               <div className="p-6 bg-white shadow-sm border-l-4 border-primary">
                 <h4 className="font-bold text-secondary mb-2 uppercase tracking-widest text-xs">
@@ -165,10 +167,10 @@ export default function AboutPage() {
           </blockquote>
           <div className="flex flex-col items-center">
             <h4 className="text-lg font-bold text-secondary uppercase tracking-widest font-outfit">
-              Noshaba Muhammad
+              {mdName}
             </h4>
             <p className="text-primary text-xs font-bold uppercase tracking-[0.2em] mt-2">
-              Managing Director
+              {mdTitle}
             </p>
           </div>
         </div>

@@ -5,8 +5,10 @@ import { motion } from 'framer-motion'
 import Link from 'next/link'
 import Image from 'next/image'
 import { ArrowRight } from 'lucide-react'
+import { useSiteSettings } from '@/providers/SiteSettingsContext'
 
 export const AboutSection = () => {
+  const { address, mdName } = useSiteSettings()
   return (
     <section className="py-24 md:py-48 bg-pearl relative overflow-hidden">
       {/* Decorative Heritage Pattern */}
@@ -33,9 +35,9 @@ export const AboutSection = () => {
 
           <div className="space-y-8 text-onyx/70 text-lg md:text-xl font-light leading-relaxed mb-12 font-outfit">
             <p>
-              Licensed under the **Ajman Free Zone**, BuildCraft Flooring & Décor stands as a
-              testament to Emirati reliability and architectural excellence. We represent the
-              pinnacle of flooring solutions across the seven emirates.
+              Licensed under the **{address}**, BuildCraft Flooring & Décor stands as a testament to
+              Emirati reliability and architectural excellence. We represent the pinnacle of
+              flooring solutions across the seven emirates.
             </p>
             <p>
               From the high-traffic corridors of **luxury UAE hotels** to the serene environments of
@@ -91,9 +93,7 @@ export const AboutSection = () => {
             <span className="text-gold font-bold uppercase tracking-widest text-[9px] block mb-4">
               Direction
             </span>
-            <h4 className="text-2xl font-serif text-onyx italic mb-2 tracking-tight">
-              Noshaba Muhammad
-            </h4>
+            <h4 className="text-2xl font-serif text-onyx italic mb-2 tracking-tight">{mdName}</h4>
             <p className="text-[10px] text-onyx/40 uppercase tracking-[0.3em] font-bold">
               Managing Director
             </p>
