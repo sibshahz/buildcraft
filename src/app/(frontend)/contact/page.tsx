@@ -2,8 +2,9 @@
 
 import { Phone, Mail, MapPin, Send, Instagram, Clock } from 'lucide-react'
 import { CTASection } from '@/components/sections/CTASection'
-import React, { useState } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
+import Script from 'next/script'
 import { useSiteSettings } from '@/providers/SiteSettingsContext'
 
 export default function ContactPage() {
@@ -18,17 +19,113 @@ export default function ContactPage() {
     phone: '',
     service: '',
     message: '',
+    turnstileToken: '',
   })
 
   const [status, setStatus] = useState<null | 'success' | 'loading'>(null)
+  const [errors, setErrors] = useState<Record<string, string>>({})
+  const turnstileContainerRef = useRef<HTMLDivElement>(null)
+  const widgetIdRef = useRef<string | null>(null)
 
-  const handleSubmit = (e: React.FormEvent) => {
+  useEffect(() => {
+    const renderTurnstile = () => {
+      if (typeof window !== 'undefined' && (window as any).turnstile && turnstileContainerRef.current) {
+        widgetIdRef.current = (window as any).turnstile.render(turnstileContainerRef.current, {
+          sitekey: process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY,
+          callback: (token: string) => {
+            setFormData((prev) => ({ ...prev, turnstileToken: token }))
+            if (errors.turnstile) setErrors((prev) => ({ ...prev, turnstile: '' }))
+          },
+        })
+      }
+    }
+
+    if ((window as any).turnstile) {
+      renderTurnstile()
+    } else {
+      // If script not loaded yet, or we're using next/script's onReady
+    }
+
+    return () => {
+      if (widgetIdRef.current && (window as any).turnstile) {
+        (window as any).turnstile.remove(widgetIdRef.current)
+      }
+    }
+  }, [])
+
+  const validateForm = () => {
+    const newErrors: Record<string, string> = {}
+    if (!formData.name.trim()) newErrors.name = 'Name is required'
+    if (!formData.email.trim()) {
+      newErrors.email = 'Email is required'
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      newErrors.email = 'Please enter a valid email address'
+    }
+    if (!formData.phone.trim()) {
+      newErrors.phone = 'Phone number is required'
+    } else if (formData.phone.length < 7) {
+      newErrors.phone = 'Please enter a valid phone number'
+    }
+    if (!formData.service) newErrors.service = 'Please select a service'
+    if (!formData.message.trim()) {
+      newErrors.message = 'Message is required'
+    } else if (formData.message.length < 10) {
+      newErrors.message = 'Please enter at least 10 characters'
+    }
+    if (process.env.NODE_ENV !== 'development' && !formData.turnstileToken) {
+      newErrors.turnstile = 'Please complete the security check'
+    }
+
+    setErrors(newErrors)
+    return Object.keys(newErrors).length === 0
+  }
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    if (status === 'loading') return // Prevent multiple submissions
+
+    if (!validateForm()) return
+
     setStatus('loading')
-    // Simulate API call
-    setTimeout(() => {
-      setStatus('success')
-    }, 1500)
+
+    try {
+      const response = await fetch('/api/contact-requests', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
+      if (response.ok) {
+        setStatus('success')
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          service: '',
+          message: '',
+          turnstileToken: '',
+        })
+        if (widgetIdRef.current && (window as any).turnstile) {
+          (window as any).turnstile.reset(widgetIdRef.current)
+        }
+      } else {
+        const data = await response.json()
+        console.error('Failed to submit contact request', data)
+        setStatus(null)
+        alert(data.errors?.[0]?.message || 'Something went wrong. Please try again.')
+        if (widgetIdRef.current && (window as any).turnstile) {
+          (window as any).turnstile.reset(widgetIdRef.current)
+        }
+      }
+    } catch (error) {
+      console.error('Error submitting contact request:', error)
+      setStatus(null)
+      alert('Something went wrong. Please try again.')
+      if (widgetIdRef.current && (window as any).turnstile) {
+        (window as any).turnstile.reset(widgetIdRef.current)
+      }
+    }
   }
 
   return (
@@ -203,8 +300,12 @@ export default function ContactPage() {
                     className="w-full bg-brand-offwhite/30 border-b border-secondary/10 p-4 focus:outline-none focus:border-primary transition-colors text-secondary font-medium"
                     placeholder="Enter your name"
                     value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    onChange={(e) => {
+                      setFormData({ ...formData, name: e.target.value })
+                      if (errors.name) setErrors((prev) => ({ ...prev, name: '' }))
+                    }}
                   />
+                  {errors.name && <p className="text-red-500 text-[10px] uppercase font-bold tracking-tight">{errors.name}</p>}
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <div className="space-y-2">
@@ -221,8 +322,12 @@ export default function ContactPage() {
                       className="w-full bg-brand-offwhite/30 border-b border-secondary/10 p-4 focus:outline-none focus:border-primary transition-colors text-secondary font-medium"
                       placeholder="your@email.com"
                       value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                      onChange={(e) => {
+                        setFormData({ ...formData, email: e.target.value })
+                        if (errors.email) setErrors((prev) => ({ ...prev, email: '' }))
+                      }}
                     />
+                    {errors.email && <p className="text-red-500 text-[10px] uppercase font-bold tracking-tight">{errors.email}</p>}
                   </div>
                   <div className="space-y-2">
                     <label
@@ -238,8 +343,12 @@ export default function ContactPage() {
                       className="w-full bg-brand-offwhite/30 border-b border-secondary/10 p-4 focus:outline-none focus:border-primary transition-colors text-secondary font-medium"
                       placeholder="+971 -- --- ----"
                       value={formData.phone}
-                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                      onChange={(e) => {
+                        setFormData({ ...formData, phone: e.target.value })
+                        if (errors.phone) setErrors((prev) => ({ ...prev, phone: '' }))
+                      }}
                     />
+                    {errors.phone && <p className="text-red-500 text-[10px] uppercase font-bold tracking-tight">{errors.phone}</p>}
                   </div>
                 </div>
                 <div className="space-y-2">
@@ -253,7 +362,10 @@ export default function ContactPage() {
                     id="service"
                     className="w-full bg-brand-offwhite/30 border-b border-secondary/10 p-4 focus:outline-none focus:border-primary transition-colors text-secondary font-medium appearance-none"
                     value={formData.service}
-                    onChange={(e) => setFormData({ ...formData, service: e.target.value })}
+                    onChange={(e) => {
+                      setFormData({ ...formData, service: e.target.value })
+                      if (errors.service) setErrors((prev) => ({ ...prev, service: '' }))
+                    }}
                   >
                     <option value="">Select a service</option>
                     <option value="wall-to-wall">Wall-to-wall Carpets</option>
@@ -262,6 +374,7 @@ export default function ContactPage() {
                     <option value="hospitality">Hospitality Carpets</option>
                     <option value="other">Other</option>
                   </select>
+                  {errors.service && <p className="text-red-500 text-[10px] uppercase font-bold tracking-tight">{errors.service}</p>}
                 </div>
                 <div className="space-y-2">
                   <label
@@ -276,12 +389,28 @@ export default function ContactPage() {
                     className="w-full bg-brand-offwhite/30 border-b border-secondary/10 p-4 focus:outline-none focus:border-primary transition-colors text-secondary font-medium resize-none"
                     placeholder="How can we help you?"
                     value={formData.message}
-                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                    onChange={(e) => {
+                      setFormData({ ...formData, message: e.target.value })
+                      if (errors.message) setErrors((prev) => ({ ...prev, message: '' }))
+                    }}
                   />
+                  {errors.message && <p className="text-red-500 text-[10px] uppercase font-bold tracking-tight">{errors.message}</p>}
                 </div>
+
+                {process.env.NODE_ENV !== 'development' && (
+                  <div className="flex flex-col space-y-2">
+                    <div ref={turnstileContainerRef} id="turnstile-widget" />
+                    {errors.turnstile && <p className="text-red-500 text-[10px] uppercase font-bold tracking-tight">{errors.turnstile}</p>}
+                  </div>
+                )}
+
                 <button
                   disabled={status === 'loading'}
-                  className="w-full bg-secondary text-white py-6 font-bold uppercase tracking-widest text-xs hover:bg-black transition-all duration-300 flex items-center justify-center"
+                  className={`w-full py-6 font-bold uppercase tracking-widest text-xs transition-all duration-300 flex items-center justify-center ${
+                    status === 'loading'
+                      ? 'bg-secondary/50 cursor-not-allowed grayscale'
+                      : 'bg-secondary text-white hover:bg-black'
+                  }`}
                 >
                   {status === 'loading' ? (
                     'Sending...'
@@ -311,6 +440,24 @@ export default function ContactPage() {
       </section>
 
       <CTASection />
+      {process.env.NODE_ENV !== 'development' && (
+        <Script
+          src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+          strategy="afterInteractive"
+          onLoad={() => {
+            if (!(window as any).turnstile) return
+            if (turnstileContainerRef.current && !widgetIdRef.current) {
+              widgetIdRef.current = (window as any).turnstile.render(turnstileContainerRef.current, {
+                sitekey: process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY,
+                callback: (token: string) => {
+                  setFormData((prev) => ({ ...prev, turnstileToken: token }))
+                  if (errors.turnstile) setErrors((prev) => ({ ...prev, turnstile: '' }))
+                },
+              })
+            }
+          }}
+        />
+      )}
     </div>
   )
 }

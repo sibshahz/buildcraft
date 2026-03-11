@@ -11,6 +11,7 @@ import { Services } from './collections/Services'
 import { Industries } from './collections/Industries'
 import { Projects } from './collections/Projects'
 import { Pages } from './collections/Pages'
+import { ContactRequests } from './collections/ContactRequests'
 import { SiteSettings } from './globals/SiteSettings'
 
 import { cloudinaryStorage } from 'payload-cloudinary'
@@ -25,7 +26,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Media, Services, Industries, Projects, Pages],
+  collections: [Users, Media, Services, Industries, Projects, Pages, ContactRequests],
   globals: [SiteSettings],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',

@@ -73,6 +73,7 @@ export interface Config {
     industries: Industry;
     projects: Project;
     pages: Page;
+    'contact-requests': ContactRequest;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -86,6 +87,7 @@ export interface Config {
     industries: IndustriesSelect<false> | IndustriesSelect<true>;
     projects: ProjectsSelect<false> | ProjectsSelect<true>;
     pages: PagesSelect<false> | PagesSelect<true>;
+    'contact-requests': ContactRequestsSelect<false> | ContactRequestsSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -420,6 +422,33 @@ export interface Page {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "contact-requests".
+ */
+export interface ContactRequest {
+  id: number;
+  name: string;
+  email: string;
+  phone: string;
+  service: string;
+  message: string;
+  status?: ('new' | 'in-progress' | 'completed' | 'rejected') | null;
+  /**
+   * Manage internal notes and logs for this contact query.
+   */
+  internalNotes?:
+    | {
+        note: string;
+        date?: string | null;
+        author?: (number | null) | User;
+        id?: string | null;
+      }[]
+    | null;
+  turnstileToken?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -465,6 +494,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'pages';
         value: number | Page;
+      } | null)
+    | ({
+        relationTo: 'contact-requests';
+        value: number | ContactRequest;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -725,6 +758,29 @@ export interface PagesSelect<T extends boolean = true> {
               blockName?: T;
             };
       };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "contact-requests_select".
+ */
+export interface ContactRequestsSelect<T extends boolean = true> {
+  name?: T;
+  email?: T;
+  phone?: T;
+  service?: T;
+  message?: T;
+  status?: T;
+  internalNotes?:
+    | T
+    | {
+        note?: T;
+        date?: T;
+        author?: T;
+        id?: T;
+      };
+  turnstileToken?: T;
   updatedAt?: T;
   createdAt?: T;
 }
