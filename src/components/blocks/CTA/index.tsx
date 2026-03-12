@@ -18,7 +18,7 @@ export const CTABlock: React.FC<CTAProps> = ({ heading, subheading, buttonText, 
             <h2 className="text-3xl md:text-5xl font-bold text-white mb-6 font-outfit leading-tight">
               {heading}
             </h2>
-            {subheading && <p className="text-sand/60 text-lg mb-10 font-light">{subheading}</p>}
+            {subheading ? <p className="text-sand/60 text-lg mb-10 font-light">{subheading}</p> : null}
             <Link
               href={buttonLink || '/contact'}
               className="inline-flex items-center px-8 py-4 bg-primary text-secondary font-bold uppercase tracking-widest text-xs hover:bg-white transition-colors duration-500"

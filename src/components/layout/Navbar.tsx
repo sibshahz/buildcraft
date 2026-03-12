@@ -138,7 +138,7 @@ export const Navbar = ({ settings }: { settings: SiteSetting }) => {
 
       {/* Mobile Menu */}
       <AnimatePresence>
-        {isOpen && (
+        {isOpen ? (
           <motion.div
             initial={{ opacity: 0, scale: 1.1 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -225,7 +225,7 @@ export const Navbar = ({ settings }: { settings: SiteSetting }) => {
               </div>
             </div>
           </motion.div>
-        )}
+        ) : null}
       </AnimatePresence>
     </>
   )

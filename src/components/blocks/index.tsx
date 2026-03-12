@@ -1,14 +1,16 @@
 import React from 'react'
 import { Page } from '@/payload-types'
-import { HeroBlock } from './Hero'
-import { ContentBlock } from './Content'
-import { ValuesBlock } from './Values'
-import { QuoteBlock } from './Quote'
-import { TwoColumnBlock } from './TwoColumn'
-import { CTABlock } from './CTA'
-import { ArchiveBlock } from './Archive'
-import { StatsBlock } from './Stats'
-import { ProcessBlock } from './Process'
+import dynamic from 'next/dynamic'
+
+const HeroBlock = dynamic(() => import('./Hero').then(mod => mod.HeroBlock))
+const ContentBlock = dynamic(() => import('./Content').then(mod => mod.ContentBlock))
+const ValuesBlock = dynamic(() => import('./Values').then(mod => mod.ValuesBlock))
+const QuoteBlock = dynamic(() => import('./Quote').then(mod => mod.QuoteBlock))
+const TwoColumnBlock = dynamic(() => import('./TwoColumn').then(mod => mod.TwoColumnBlock))
+const CTABlock = dynamic(() => import('./CTA').then(mod => mod.CTABlock))
+const ArchiveBlock = dynamic(() => import('./Archive').then(mod => mod.ArchiveBlock))
+const StatsBlock = dynamic(() => import('./Stats').then(mod => mod.StatsBlock))
+const ProcessBlock = dynamic(() => import('./Process').then(mod => mod.ProcessBlock))
 
 const blockComponents: Record<string, any> = {
   hero: HeroBlock,

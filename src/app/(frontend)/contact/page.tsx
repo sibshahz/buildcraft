@@ -309,7 +309,7 @@ export default function ContactPage() {
                       if (errors.name) setErrors((prev) => ({ ...prev, name: '' }))
                     }}
                   />
-                  {errors.name && <p className="text-red-500 text-[10px] uppercase font-bold tracking-tight">{errors.name}</p>}
+                  {errors.name ? <p className="text-red-500 text-[10px] uppercase font-bold tracking-tight">{errors.name}</p> : null}
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <div className="space-y-2">
@@ -331,7 +331,7 @@ export default function ContactPage() {
                         if (errors.email) setErrors((prev) => ({ ...prev, email: '' }))
                       }}
                     />
-                    {errors.email && <p className="text-red-500 text-[10px] uppercase font-bold tracking-tight">{errors.email}</p>}
+                    {errors.email ? <p className="text-red-500 text-[10px] uppercase font-bold tracking-tight">{errors.email}</p> : null}
                   </div>
                   <div className="space-y-2">
                     <label
@@ -352,7 +352,7 @@ export default function ContactPage() {
                         if (errors.phone) setErrors((prev) => ({ ...prev, phone: '' }))
                       }}
                     />
-                    {errors.phone && <p className="text-red-500 text-[10px] uppercase font-bold tracking-tight">{errors.phone}</p>}
+                    {errors.phone ? <p className="text-red-500 text-[10px] uppercase font-bold tracking-tight">{errors.phone}</p> : null}
                   </div>
                 </div>
                 <div className="space-y-2">
@@ -378,7 +378,7 @@ export default function ContactPage() {
                     <option value="hospitality">Hospitality Carpets</option>
                     <option value="other">Other</option>
                   </select>
-                  {errors.service && <p className="text-red-500 text-[10px] uppercase font-bold tracking-tight">{errors.service}</p>}
+                  {errors.service ? <p className="text-red-500 text-[10px] uppercase font-bold tracking-tight">{errors.service}</p> : null}
                 </div>
                 <div className="space-y-2">
                   <label
@@ -398,15 +398,15 @@ export default function ContactPage() {
                       if (errors.message) setErrors((prev) => ({ ...prev, message: '' }))
                     }}
                   />
-                  {errors.message && <p className="text-red-500 text-[10px] uppercase font-bold tracking-tight">{errors.message}</p>}
+                  {errors.message ? <p className="text-red-500 text-[10px] uppercase font-bold tracking-tight">{errors.message}</p> : null}
                 </div>
 
-                {process.env.NODE_ENV !== 'development' && (
+                {process.env.NODE_ENV !== 'development' ? (
                   <div className="flex flex-col space-y-2">
                     <div ref={turnstileContainerRef} id="turnstile-widget" />
-                    {errors.turnstile && <p className="text-red-500 text-[10px] uppercase font-bold tracking-tight">{errors.turnstile}</p>}
+                    {errors.turnstile ? <p className="text-red-500 text-[10px] uppercase font-bold tracking-tight">{errors.turnstile}</p> : null}
                   </div>
-                )}
+                ) : null}
 
                 <button
                   disabled={status === 'loading'}
@@ -444,7 +444,7 @@ export default function ContactPage() {
       </section>
 
       <CTASection />
-      {process.env.NODE_ENV !== 'development' && (
+      {process.env.NODE_ENV !== 'development' ? (
         <Script
           src="https://challenges.cloudflare.com/turnstile/v0/api.js"
           strategy="afterInteractive"
@@ -461,7 +461,7 @@ export default function ContactPage() {
             }
           }}
         />
-      )}
+      ) : null}
     </div>
   )
 }
