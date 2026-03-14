@@ -40,6 +40,8 @@ export const metadata = {
   },
 }
 
+export const revalidate = 60 // Revalidate pages every 60 seconds (ISR)
+
 export default async function RootLayout(props: { children: React.ReactNode }) {
   const { children } = props
 
