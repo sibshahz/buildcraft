@@ -25,7 +25,7 @@ export const ServicesGrid: React.FC<ServicesGridProps> = ({
           <div className="flex items-center space-x-4 mb-6">
             <div className="w-10 h-[1px] bg-gold" />
             <span className="text-gold font-bold uppercase tracking-[0.4em] text-[10px]">
-              Our Expertise
+              {subheading}
             </span>
           </div>
           <h2 className="text-5xl md:text-7xl font-serif text-onyx leading-tight">
@@ -46,44 +46,46 @@ export const ServicesGrid: React.FC<ServicesGridProps> = ({
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1, duration: 1, ease: [0.22, 1, 0.36, 1] }}
-                className="group flex flex-col"
+                className="group"
               >
                 <Link
                   href={href}
-                  className="relative aspect-[4/5] overflow-hidden mb-8 bg-pearl"
+                  className="flex flex-col h-full"
                 >
-                  {imageUrl && (
-                    <Image
-                      src={imageUrl}
-                      alt={service.title}
-                      fill
-                      className="object-cover transition-transform duration-1000 group-hover:scale-110 grayscale-[10%] group-hover:grayscale-0 shadow-xl"
-                    />
-                  )}
-                  {/* Decorative Frame Overlay */}
-                  <div className="absolute inset-0 border-[0px] group-hover:border-[12px] border-onyx/10 transition-all duration-700 pointer-events-none" />
-  
-                  {/* Reveal Arrow */}
-                  <div className="absolute bottom-6 right-6 w-12 h-12 bg-gold flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0 shadow-lg">
-                    <ArrowUpRight className="w-6 h-6 text-onyx" />
+                  <div className="relative aspect-[4/5] overflow-hidden mb-8 bg-pearl">
+                    {imageUrl && (
+                      <Image
+                        src={imageUrl}
+                        alt={service.title}
+                        fill
+                        className="object-cover transition-transform duration-1000 group-hover:scale-110 grayscale-[10%] group-hover:grayscale-0 shadow-xl"
+                      />
+                    )}
+                    {/* Decorative Frame Overlay */}
+                    <div className="absolute inset-0 border-[0px] group-hover:border-[12px] border-onyx/10 transition-all duration-700 pointer-events-none" />
+    
+                    {/* Reveal Arrow */}
+                    <div className="absolute bottom-6 right-6 w-12 h-12 bg-gold flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0 shadow-lg">
+                      <ArrowUpRight className="w-6 h-6 text-onyx" />
+                    </div>
+                  </div>
+    
+                  <div className="flex flex-col">
+                    {service.category && (
+                      <span className="text-gold font-bold uppercase tracking-widest text-[9px] mb-3">
+                        {service.category}
+                      </span>
+                    )}
+                    <h3 className="text-2xl font-serif text-onyx mb-4 group-hover:text-gold transition-colors duration-300">
+                      {service.title}
+                    </h3>
+                    <p className="text-onyx/60 text-sm leading-relaxed font-light line-clamp-2">
+                      {service.description}
+                    </p>
+    
+                    <div className="mt-6 w-0 group-hover:w-full h-[1px] bg-gold/30 transition-all duration-700" />
                   </div>
                 </Link>
-  
-                <div className="flex flex-col">
-                  {service.category && (
-                    <span className="text-gold font-bold uppercase tracking-widest text-[9px] mb-3">
-                      {service.category}
-                    </span>
-                  )}
-                  <h3 className="text-2xl font-serif text-onyx mb-4 group-hover:text-gold transition-colors duration-300">
-                    {service.title}
-                  </h3>
-                  <p className="text-onyx/60 text-sm leading-relaxed font-light line-clamp-2">
-                    {service.description}
-                  </p>
-  
-                  <div className="mt-6 w-0 group-hover:w-full h-[1px] bg-gold/30 transition-all duration-700" />
-                </div>
               </motion.div>
             )
           })}

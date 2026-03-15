@@ -28,6 +28,13 @@ export const Projects: CollectionConfig = {
       type: 'date',
     },
     {
+      name: 'slug',
+      type: 'text',
+      required: true,
+      unique: true,
+      index: true,
+    },
+    {
       name: 'category',
       type: 'relationship',
       relationTo: 'industries',
@@ -40,13 +47,35 @@ export const Projects: CollectionConfig = {
       required: true,
     },
     {
-      name: 'gallery',
-      type: 'array',
-      fields: [
+      name: 'layout',
+      type: 'blocks',
+      blocks: [
         {
-          name: 'image',
-          type: 'upload',
-          relationTo: 'media',
+          slug: 'content',
+          fields: [
+            {
+              name: 'content',
+              type: 'richText',
+              required: true,
+            },
+          ],
+        },
+        {
+          slug: 'gallery',
+          fields: [
+            {
+              name: 'images',
+              type: 'array',
+              fields: [
+                {
+                  name: 'image',
+                  type: 'upload',
+                  relationTo: 'media',
+                  required: true,
+                },
+              ],
+            },
+          ],
         },
       ],
     },

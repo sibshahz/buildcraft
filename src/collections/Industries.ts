@@ -40,6 +40,11 @@ export const Industries: CollectionConfig = {
       required: true,
     },
     {
+      name: 'longDescription',
+      type: 'richText',
+      label: 'Detailed Description (for Modal)',
+    },
+    {
       name: 'bannerImage',
       type: 'upload',
       relationTo: 'media',

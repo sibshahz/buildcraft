@@ -2,7 +2,7 @@ import React from 'react'
 import { getPayload } from 'payload'
 import configPromise from '@payload-config'
 import { CTASection } from '@/components/sections/CTASection'
-import { IndustryCard } from './IndustryCard'
+import { IndustriesList } from './IndustriesList'
 
 export default async function IndustriesPage() {
   const payload = await getPayload({ config: configPromise })
@@ -42,11 +42,7 @@ export default async function IndustriesPage() {
 
       {/* Industries Grid Section */}
       <section className="py-24 md:py-32 bg-brand-offwhite">
-        <div className="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 lg:gap-16">
-          {industries.docs.map((industry, index) => (
-            <IndustryCard key={industry.id} industry={industry} index={index} />
-          ))}
-        </div>
+        <IndustriesList industries={industries.docs} />
       </section>
 
       {/* Capability Statement */}

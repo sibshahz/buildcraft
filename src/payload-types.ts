@@ -246,13 +246,42 @@ export interface Service {
   slug: string;
   category?: string | null;
   description: string;
-  image: number | Media;
-  features?:
-    | {
-        feature?: string | null;
-        id?: string | null;
-      }[]
+  layout?:
+    | (
+        | {
+            content: {
+              root: {
+                type: string;
+                children: {
+                  type: any;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'content';
+          }
+        | {
+            items?:
+              | {
+                  feature: string;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'features';
+          }
+      )[]
     | null;
+  image: number | Media;
   updatedAt: string;
   createdAt: string;
 }
@@ -266,6 +295,21 @@ export interface Industry {
   slug: string;
   icon: 'hotel' | 'office' | 'villa' | 'mosque' | 'shop' | 'graduation';
   description: string;
+  longDescription?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
   bannerImage: number | Media;
   updatedAt: string;
   createdAt: string;
@@ -280,13 +324,43 @@ export interface Project {
   client?: string | null;
   location?: string | null;
   completionDate?: string | null;
+  slug: string;
   category: number | Industry;
   featuredImage: number | Media;
-  gallery?:
-    | {
-        image?: (number | null) | Media;
-        id?: string | null;
-      }[]
+  layout?:
+    | (
+        | {
+            content: {
+              root: {
+                type: string;
+                children: {
+                  type: any;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'content';
+          }
+        | {
+            images?:
+              | {
+                  image: number | Media;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'gallery';
+          }
+      )[]
     | null;
   updatedAt: string;
   createdAt: string;
@@ -655,13 +729,30 @@ export interface ServicesSelect<T extends boolean = true> {
   slug?: T;
   category?: T;
   description?: T;
-  image?: T;
-  features?:
+  layout?:
     | T
     | {
-        feature?: T;
-        id?: T;
+        content?:
+          | T
+          | {
+              content?: T;
+              id?: T;
+              blockName?: T;
+            };
+        features?:
+          | T
+          | {
+              items?:
+                | T
+                | {
+                    feature?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
       };
+  image?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -674,6 +765,7 @@ export interface IndustriesSelect<T extends boolean = true> {
   slug?: T;
   icon?: T;
   description?: T;
+  longDescription?: T;
   bannerImage?: T;
   updatedAt?: T;
   createdAt?: T;
@@ -687,13 +779,31 @@ export interface ProjectsSelect<T extends boolean = true> {
   client?: T;
   location?: T;
   completionDate?: T;
+  slug?: T;
   category?: T;
   featuredImage?: T;
-  gallery?:
+  layout?:
     | T
     | {
-        image?: T;
-        id?: T;
+        content?:
+          | T
+          | {
+              content?: T;
+              id?: T;
+              blockName?: T;
+            };
+        gallery?:
+          | T
+          | {
+              images?:
+                | T
+                | {
+                    image?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
       };
   updatedAt?: T;
   createdAt?: T;

@@ -32,20 +32,42 @@ export const Services: CollectionConfig = {
       required: true,
     },
     {
+      name: 'layout',
+      type: 'blocks',
+      blocks: [
+        {
+          slug: 'content',
+          fields: [
+            {
+              name: 'content',
+              type: 'richText',
+              required: true,
+            },
+          ],
+        },
+        {
+          slug: 'features',
+          fields: [
+            {
+              name: 'items',
+              type: 'array',
+              fields: [
+                {
+                  name: 'feature',
+                  type: 'text',
+                  required: true,
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+    {
       name: 'image',
       type: 'upload',
       relationTo: 'media',
       required: true,
-    },
-    {
-      name: 'features',
-      type: 'array',
-      fields: [
-        {
-          name: 'feature',
-          type: 'text',
-        },
-      ],
     },
   ],
 }

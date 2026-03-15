@@ -93,7 +93,7 @@ export const ProjectGrid = ({ projects, industries }: ProjectGridProps) => {
                       {project.title}
                     </h3>
                     <Link
-                      href={`/projects/${project.id}`}
+                      href={`/projects/${project.slug}`}
                       className="group/btn flex items-center text-secondary font-bold uppercase tracking-widest text-[10px] border-b border-secondary/10 pb-1 self-start hover:border-primary transition-all duration-300"
                     >
                       Full Case Study
