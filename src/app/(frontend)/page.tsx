@@ -23,16 +23,11 @@ export default async function HomePage() {
 
   const page = result.docs[0]
 
-  if (page) {
-    return (
-      <div className="flex flex-col">
-        <BlockRenderer blocks={page.layout} />
-      </div>
-    )
-  }
-
-  // Fallback to existing static layout if home page doesn't exist in Payload yet
-  return (
+  return page ? (
+    <div className="flex flex-col">
+      <BlockRenderer blocks={page.layout} />
+    </div>
+  ) : (
     <div className="flex flex-col">
       {/* Hero Section */}
       <Hero />

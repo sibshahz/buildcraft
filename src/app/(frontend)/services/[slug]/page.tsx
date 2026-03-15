@@ -14,9 +14,11 @@ interface PageProps {
   }>
 }
 
-export default async function ServicePage({ params }: PageProps) {
-  const { slug } = await params
-  const payload = await getPayload({ config })
+export default async function ServicePage(props: PageProps) {
+  const [{ slug }, payload] = await Promise.all([
+    props.params,
+    getPayload({ config }),
+  ])
 
   const { docs } = await payload.find({
     collection: 'services',
