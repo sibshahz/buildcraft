@@ -16,6 +16,17 @@ export const Services: CollectionConfig = {
       required: true,
     },
     {
+      name: 'slug',
+      type: 'text',
+      required: true,
+      unique: true,
+      index: true,
+    },
+    {
+      name: 'category',
+      type: 'text',
+    },
+    {
       name: 'description',
       type: 'textarea',
       required: true,

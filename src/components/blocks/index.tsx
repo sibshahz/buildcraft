@@ -11,17 +11,23 @@ const CTABlock = dynamic(() => import('./CTA').then(mod => mod.CTABlock))
 const ArchiveBlock = dynamic(() => import('./Archive').then(mod => mod.ArchiveBlock))
 const StatsBlock = dynamic(() => import('./Stats').then(mod => mod.StatsBlock))
 const ProcessBlock = dynamic(() => import('./Process').then(mod => mod.ProcessBlock))
+const ServicesGridBlock = dynamic(() => import('./ServicesGrid').then(mod => mod.ServicesGridBlock))
+const IndustriesGridBlock = dynamic(() => import('./IndustriesGrid').then(mod => mod.IndustriesGridBlock))
+const AboutBlock = dynamic(() => import('./About').then(mod => mod.AboutBlock))
 
 const blockComponents: Record<string, any> = {
   hero: HeroBlock,
   content: ContentBlock,
+  twoColumn: TwoColumnBlock,
   values: ValuesBlock,
   quote: QuoteBlock,
-  twoColumn: TwoColumnBlock,
   cta: CTABlock,
   archive: ArchiveBlock,
   stats: StatsBlock,
   process: ProcessBlock,
+  servicesGrid: ServicesGridBlock,
+  industriesGrid: IndustriesGridBlock,
+  about: AboutBlock,
 }
 
 export const BlockRenderer: React.FC<{ blocks: Page['layout'] }> = ({ blocks }) => {

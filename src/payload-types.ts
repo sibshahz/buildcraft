@@ -243,6 +243,8 @@ export interface Media {
 export interface Service {
   id: number;
   title: string;
+  slug: string;
+  category?: string | null;
   description: string;
   image: number | Media;
   features?:
@@ -261,7 +263,8 @@ export interface Service {
 export interface Industry {
   id: number;
   title: string;
-  icon: 'hotel' | 'office' | 'villa' | 'mosque' | 'shop';
+  slug: string;
+  icon: 'hotel' | 'office' | 'villa' | 'mosque' | 'shop' | 'graduation';
   description: string;
   bannerImage: number | Media;
   updatedAt: string;
@@ -415,6 +418,50 @@ export interface Page {
         id?: string | null;
         blockName?: string | null;
         blockType: 'process';
+      }
+    | {
+        heading?: string | null;
+        subheading?: string | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'servicesGrid';
+      }
+    | {
+        heading?: string | null;
+        subheading?: string | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'industriesGrid';
+      }
+    | {
+        subheading?: string | null;
+        heading?: string | null;
+        content?: {
+          root: {
+            type: string;
+            children: {
+              type: any;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        } | null;
+        image: number | Media;
+        stats?:
+          | {
+              value?: string | null;
+              label?: string | null;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'about';
       }
   )[];
   updatedAt: string;
@@ -605,6 +652,8 @@ export interface MediaSelect<T extends boolean = true> {
  */
 export interface ServicesSelect<T extends boolean = true> {
   title?: T;
+  slug?: T;
+  category?: T;
   description?: T;
   image?: T;
   features?:
@@ -622,6 +671,7 @@ export interface ServicesSelect<T extends boolean = true> {
  */
 export interface IndustriesSelect<T extends boolean = true> {
   title?: T;
+  slug?: T;
   icon?: T;
   description?: T;
   bannerImage?: T;
@@ -752,6 +802,39 @@ export interface PagesSelect<T extends boolean = true> {
                 | {
                     title?: T;
                     description?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        servicesGrid?:
+          | T
+          | {
+              heading?: T;
+              subheading?: T;
+              id?: T;
+              blockName?: T;
+            };
+        industriesGrid?:
+          | T
+          | {
+              heading?: T;
+              subheading?: T;
+              id?: T;
+              blockName?: T;
+            };
+        about?:
+          | T
+          | {
+              subheading?: T;
+              heading?: T;
+              content?: T;
+              image?: T;
+              stats?:
+                | T
+                | {
+                    value?: T;
+                    label?: T;
                     id?: T;
                   };
               id?: T;

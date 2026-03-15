@@ -6,9 +6,27 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { ArrowRight } from 'lucide-react'
 import { useSiteSettings } from '@/providers/SiteSettingsContext'
+import { Media } from '@/payload-types'
+import { RichText } from '@/components/common/RichText'
 
-export const AboutSection = () => {
-  const { address, mdName } = useSiteSettings()
+interface AboutSectionProps {
+  subheading?: string | null
+  heading?: string | null
+  content?: any | null
+  image?: Media | number | null
+  stats?: { value?: string | null; label?: string | null }[] | null
+}
+
+export const AboutSection: React.FC<AboutSectionProps> = ({
+  subheading = 'The BuildCraft Legacy',
+  heading = 'Regional Expertise. Global Quality.',
+  content,
+  image,
+  stats,
+}) => {
+  const { mdName } = useSiteSettings()
+  const imageUrl = (image as Media)?.url || 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop'
+
   return (
     <section className="py-24 md:py-48 bg-pearl relative overflow-hidden">
       {/* Decorative Heritage Pattern */}
@@ -24,41 +42,57 @@ export const AboutSection = () => {
           <div className="flex items-center space-x-4 mb-8">
             <div className="w-10 h-[1px] bg-gold" />
             <span className="text-gold font-bold uppercase tracking-[0.4em] text-[10px]">
-              The BuildCraft Legacy
+              {subheading}
             </span>
           </div>
 
           <h2 className="text-5xl md:text-7xl font-serif text-onyx leading-[1.1] mb-12">
-            Regional Expertise. <br />
-            <span className="italic font-light">Global Quality.</span>
+            {heading}
           </h2>
 
           <div className="space-y-8 text-onyx/70 text-lg md:text-xl font-light leading-relaxed mb-12 font-outfit">
-            <p>
-              Licensed under the **{address}**, BuildCraft Flooring & Décor stands as a testament to
-              Emirati reliability and architectural excellence. We represent the pinnacle of
-              flooring solutions across the seven emirates.
-            </p>
-            <p>
-              From the high-traffic corridors of **luxury UAE hotels** to the serene environments of
-              local **mosques and private royal villas**, our commitment to premium installation
-              quality remains unparalleled.
-            </p>
+            {content ? (
+              <RichText content={content} />
+            ) : (
+              <>
+                <p>
+                  BuildCraft Flooring & Décor stands as a testament to
+                  Emirati reliability and architectural excellence. We represent the pinnacle of
+                  flooring solutions across the seven emirates.
+                </p>
+                <p>
+                  From the high-traffic corridors of **luxury UAE hotels** to the serene environments of
+                  local **mosques and private royal villas**, our commitment to premium installation
+                  quality remains unparalleled.
+                </p>
+              </>
+            )}
           </div>
 
           <div className="grid grid-cols-2 gap-8 mb-16">
-            <div className="flex flex-col">
-              <span className="text-gold font-bold text-4xl font-serif mb-2">07</span>
-              <span className="text-[10px] uppercase tracking-widest text-onyx/40 font-bold">
-                Emirates Served
-              </span>
-            </div>
-            <div className="flex flex-col">
-              <span className="text-gold font-bold text-4xl font-serif mb-2">100+</span>
-              <span className="text-[10px] uppercase tracking-widest text-onyx/40 font-bold">
-                Elite Projects
-              </span>
-            </div>
+            {stats ? stats.map((stat, i) => (
+              <div key={i} className="flex flex-col">
+                <span className="text-gold font-bold text-4xl font-serif mb-2">{stat.value}</span>
+                <span className="text-[10px] uppercase tracking-widest text-onyx/40 font-bold">
+                  {stat.label}
+                </span>
+              </div>
+            )) : (
+              <>
+                <div className="flex flex-col">
+                  <span className="text-gold font-bold text-4xl font-serif mb-2">07</span>
+                  <span className="text-[10px] uppercase tracking-widest text-onyx/40 font-bold">
+                    Emirates Served
+                  </span>
+                </div>
+                <div className="flex flex-col">
+                  <span className="text-gold font-bold text-4xl font-serif mb-2">100+</span>
+                  <span className="text-[10px] uppercase tracking-widest text-onyx/40 font-bold">
+                    Elite Projects
+                  </span>
+                </div>
+              </>
+            )}
           </div>
 
           <Link
@@ -81,8 +115,8 @@ export const AboutSection = () => {
           <div className="relative aspect-[4/5] w-full overflow-hidden bg-onyx p-6 shadow-2xl">
             <div className="absolute inset-0 z-10 bg-onyx/10 opacity-40 group-hover:opacity-0 transition-opacity" />
             <Image
-              src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop"
-              alt="Luxury Emirati Villa Interior"
+              src={imageUrl}
+              alt="BuildCraft About Image"
               fill
               className="object-cover transition-transform duration-2000 hover:scale-105"
             />

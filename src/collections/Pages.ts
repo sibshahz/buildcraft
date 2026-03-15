@@ -130,6 +130,62 @@ const ProcessBlock: Block = {
   ],
 }
 
+const ServicesGridBlock: Block = {
+  slug: 'servicesGrid',
+  fields: [
+    { name: 'heading', type: 'text' },
+    { name: 'subheading', type: 'text' },
+  ],
+}
+
+const IndustriesGridBlock: Block = {
+  slug: 'industriesGrid',
+  fields: [
+    { name: 'heading', type: 'text' },
+    { name: 'subheading', type: 'text' },
+  ],
+}
+
+const AboutBlock: Block = {
+  slug: 'about',
+  fields: [
+    {
+      name: 'subheading',
+      type: 'text',
+      defaultValue: 'The BuildCraft Legacy',
+    },
+    {
+      name: 'heading',
+      type: 'text',
+      defaultValue: 'Regional Expertise. Global Quality.',
+    },
+    {
+      name: 'content',
+      type: 'richText',
+    },
+    {
+      name: 'image',
+      type: 'upload',
+      relationTo: 'media',
+      required: true,
+    },
+    {
+      name: 'stats',
+      type: 'array',
+      fields: [
+        {
+          name: 'value',
+          type: 'text',
+        },
+        {
+          name: 'label',
+          type: 'text',
+        },
+      ],
+    },
+  ],
+}
+
 export const Pages: CollectionConfig = {
   slug: 'pages',
   admin: {
@@ -166,6 +222,9 @@ export const Pages: CollectionConfig = {
         ArchiveBlock,
         StatsBlock,
         ProcessBlock,
+        ServicesGridBlock,
+        IndustriesGridBlock,
+        AboutBlock,
       ],
       required: true,
     },

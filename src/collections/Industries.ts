@@ -15,6 +15,13 @@ export const Industries: CollectionConfig = {
       required: true,
     },
     {
+      name: 'slug',
+      type: 'text',
+      required: true,
+      unique: true,
+      index: true,
+    },
+    {
       name: 'icon',
       type: 'select',
       options: [
@@ -23,6 +30,7 @@ export const Industries: CollectionConfig = {
         { label: 'Villa', value: 'villa' },
         { label: 'Mosque', value: 'mosque' },
         { label: 'Shop', value: 'shop' },
+        { label: 'Graduation', value: 'graduation' },
       ],
       required: true,
     },
