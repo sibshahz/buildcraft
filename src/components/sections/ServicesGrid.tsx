@@ -29,8 +29,7 @@ export const ServicesGrid: React.FC<ServicesGridProps> = ({
             </span>
           </div>
           <h2 className="text-5xl md:text-7xl font-serif text-onyx leading-tight">
-            Comprehensive <br />
-            <span className="italic font-light">Flooring Masterpieces.</span>
+            {heading}
           </h2>
         </div>
 

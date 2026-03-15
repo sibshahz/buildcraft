@@ -1,7 +1,6 @@
 'use client'
 
 import React, { useState, useEffect, useRef } from 'react'
-import { motion } from 'framer-motion'
 import { Send } from 'lucide-react'
 import Script from 'next/script'
 import { submitContactForm } from '@/app/(frontend)/contact/actions'

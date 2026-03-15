@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
 import Image from 'next/image'
 import { Industry, Media } from '@/payload-types'
 import { 
@@ -11,12 +11,9 @@ import {
   Palmtree, 
   ShoppingBag, 
   GraduationCap,
-  X,
   ArrowRight
 } from 'lucide-react'
-import { RichText } from '@/components/common/RichText'
 
-import Link from 'next/link'
 import { IndustryModal } from './IndustryModal'
 
 const iconMap = {

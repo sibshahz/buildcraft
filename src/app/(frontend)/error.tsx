@@ -3,6 +3,7 @@
 import React, { useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { RefreshCw, AlertCircle } from 'lucide-react'
+import Link from 'next/link'
 
 export default function Error({
   error,
@@ -49,12 +50,12 @@ export default function Error({
             >
               Try Again <RefreshCw className="ml-2 w-4 h-4" />
             </button>
-            <a
+            <Link
               href="/"
               className="flex items-center justify-center px-8 py-4 border border-onyx/20 text-onyx font-bold uppercase tracking-widest text-[10px] hover:border-gold transition-colors duration-300 min-w-[160px]"
             >
               Back to Home
-            </a>
+            </Link>
           </div>
         </motion.div>
       </div>

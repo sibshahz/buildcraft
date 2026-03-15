@@ -3,7 +3,6 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
-import Link from 'next/link'
 import { ArrowRight, Building, Home, Hotel, Building2, Store } from 'lucide-react'
 import { Industry, Media } from '@/payload-types'
 import { LucideIcon } from 'lucide-react'
