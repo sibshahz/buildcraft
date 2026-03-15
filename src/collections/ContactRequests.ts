@@ -143,13 +143,16 @@ export const ContactRequests: CollectionConfig = {
               throw new Error('Please complete the security check')
             }
 
-            const response = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
+            const response = await fetch(
+              'https://challenges.cloudflare.com/turnstile/v0/siteverify',
+              {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: `secret=${process.env.TURNSTILE_SECURITY_KEY}&response=${value}`,
               },
-              body: `secret=${process.env.TURNSTILE_SECURITY_KEY}&response=${value}`,
-            })
+            )
 
             const result = await response.json()
 
@@ -168,5 +171,28 @@ export const ContactRequests: CollectionConfig = {
       },
     },
   ],
+  hooks: {
+    afterChange: [
+      async ({ doc, operation, req }) => {
+        if (operation === 'create') {
+          await req.payload.sendEmail({
+            to: process.env.SALES_EMAIL || process.env.GMAIL_EMAIL || '',
+            subject: `New Contact Request from ${doc.name}`,
+            html: `
+              <h1>New Contact Request</h1>
+              <p><strong>Name:</strong> ${doc.name}</p>
+              <p><strong>Email:</strong> ${doc.email}</p>
+              <p><strong>Phone:</strong> ${doc.phone}</p>
+              <p><strong>Service:</strong> ${doc.service}</p>
+              <p><strong>Message:</strong></p>
+              <p>${doc.message}</p>
+              <hr />
+              <p>View in Admin Panel: <a href="${process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3000'}/admin/collections/contact-requests/${doc.id}">${doc.id}</a></p>
+            `,
+          })
+        }
+      },
+    ],
+  },
   timestamps: true,
 }
