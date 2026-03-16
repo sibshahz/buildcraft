@@ -11,11 +11,13 @@ export default async function ProjectsPage() {
     collection: 'projects',
     limit: 100,
     depth: 1, // To get industry details
+    overrideAccess: false,
   })
 
   const industriesResult = await payload.find({
     collection: 'industries',
     limit: 100,
+    overrideAccess: false,
   })
 
   return (

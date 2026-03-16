@@ -19,6 +19,7 @@ export default async function HomePage() {
       },
     },
     limit: 1,
+    overrideAccess: false,
   })
 
   const page = result.docs[0]

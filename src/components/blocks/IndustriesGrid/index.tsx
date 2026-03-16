@@ -12,6 +12,7 @@ export const IndustriesGridBlock = async (props: IndustriesGridBlockProps) => {
   const result = await payload.find({
     collection: 'industries',
     limit: 100,
+    overrideAccess: false,
   })
 
   return (

@@ -6,8 +6,18 @@ export const Services: CollectionConfig = {
     useAsTitle: 'title',
     defaultColumns: ['title', 'updatedAt'],
   },
+  versions: {
+    drafts: true,
+  },
   access: {
-    read: () => true,
+    read: ({ req: { user } }) => {
+      if (user) return true
+      return {
+        _status: {
+          equals: 'published',
+        },
+      }
+    },
   },
   fields: [
     {

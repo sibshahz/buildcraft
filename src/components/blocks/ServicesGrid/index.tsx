@@ -12,6 +12,7 @@ export const ServicesGridBlock = async (props: ServicesGridBlockProps) => {
   const result = await payload.find({
     collection: 'services',
     limit: 100,
+    overrideAccess: false,
   })
 
   return (

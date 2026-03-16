@@ -10,6 +10,7 @@ export default async function IndustriesPage() {
   const industries = await payload.find({
     collection: 'industries',
     limit: 100,
+    overrideAccess: false,
   })
 
   return (

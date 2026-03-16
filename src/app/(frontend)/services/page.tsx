@@ -12,6 +12,7 @@ export default async function ServicesPage() {
   const services = await payload.find({
     collection: 'services',
     limit: 100,
+    overrideAccess: false,
   })
 
   return (

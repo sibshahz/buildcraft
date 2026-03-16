@@ -15,6 +15,7 @@ export const ArchiveBlock = async ({ heading, subheading, collection, limit }: A
     collection: collection as any,
     limit: limit || 6,
     sort: '-createdAt',
+    overrideAccess: false,
   })
 
   const docs = result.docs

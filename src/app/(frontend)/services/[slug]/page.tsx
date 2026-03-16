@@ -27,6 +27,7 @@ export default async function ServicePage(props: PageProps) {
         equals: slug,
       },
     },
+    overrideAccess: false,
   })
 
   const service = docs[0]

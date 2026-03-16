@@ -26,6 +26,7 @@ export default async function ProjectPage({ params }: PageProps) {
       },
     },
     depth: 1,
+    overrideAccess: false,
   })
 
   const project = docs[0]
