@@ -52,10 +52,14 @@ export async function generateMetadata(): Promise<Metadata> {
       images: siteSettings.meta?.image
         ? [
             {
-              url: (siteSettings.meta.image as any).url || '/og-image.jpg',
+              url: (siteSettings.meta.image as any).url || '/og-image.png',
             },
           ]
-        : [],
+        : [
+            {
+              url: '/og-image.png',
+            },
+          ],
     },
   }
 }
