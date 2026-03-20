@@ -8,6 +8,7 @@ import { Media } from '@/payload-types'
 import { RichText } from '@/components/common/RichText'
 import { ArrowRight, CheckCircle2 } from 'lucide-react'
 import Link from 'next/link'
+import { JsonLd } from '@/components/common/JsonLd'
 
 interface PageProps {
   params: Promise<{
@@ -78,8 +79,26 @@ export default async function ServicePage(props: PageProps) {
     return notFound()
   }
 
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: service.title,
+    description: service.description,
+    provider: {
+      '@type': 'LocalBusiness',
+      name: 'BuildCraft Flooring & Décor',
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: 'Ajman',
+        addressCountry: 'AE',
+      },
+    },
+    areaServed: 'United Arab Emirates',
+  }
+
   return (
     <main className="min-h-screen bg-pearl">
+      <JsonLd data={jsonLd} />
       {/* Hero Section */}
       <section className="relative h-[70vh] flex items-center justify-center overflow-hidden">
         <Image
