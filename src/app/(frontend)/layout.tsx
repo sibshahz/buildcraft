@@ -1,5 +1,6 @@
 import React from 'react'
 import { Inter, Outfit, Cormorant_Garamond } from 'next/font/google'
+import type { Metadata } from 'next'
 import { Navbar } from '@/components/layout/Navbar'
 import { Footer } from '@/components/layout/Footer'
 import { SiteSettingsProvider } from '@/providers/SiteSettingsContext'
@@ -28,16 +29,35 @@ const cormorant = Cormorant_Garamond({
 import configPromise from '@payload-config'
 import { getPayload } from 'payload'
 
-export const metadata = {
-  description:
-    'Premium flooring solutions in UAE - carpets, tiles, and LVT flooring for hospitality, offices, and residential spaces.',
-  title: {
-    template: '%s | BuildCraft Flooring & Décor',
-    default: 'BuildCraft Flooring & Décor | Premium Flooring Solutions UAE',
-  },
-  icons: {
-    icon: '/favicon.ico',
-  },
+export async function generateMetadata(): Promise<Metadata> {
+  const payload = await getPayload({ config: configPromise })
+  const siteSettings = await payload.findGlobal({
+    slug: 'site-settings',
+  })
+
+  return {
+    description:
+      siteSettings.meta?.description ||
+      'Premium flooring solutions in UAE - carpets, tiles, and LVT flooring for hospitality, offices, and residential spaces.',
+    title: {
+      template: '%s | BuildCraft Flooring & Décor',
+      default: siteSettings.meta?.title || 'BuildCraft Flooring & Décor | Premium Flooring Solutions UAE',
+    },
+    icons: {
+      icon: '/favicon.ico',
+    },
+    openGraph: {
+      title: siteSettings.meta?.title || 'BuildCraft Flooring & Décor',
+      description: siteSettings.meta?.description || 'Premium flooring solutions in UAE',
+      images: siteSettings.meta?.image
+        ? [
+            {
+              url: (siteSettings.meta.image as any).url || '/og-image.jpg',
+            },
+          ]
+        : [],
+    },
+  }
 }
 
 export const revalidate = 60 // Revalidate pages every 60 seconds (ISR)

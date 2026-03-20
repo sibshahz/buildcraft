@@ -1,8 +1,40 @@
-import React from 'react'
 import { getPayload } from 'payload'
 import configPromise from '@payload-config'
+import type { Metadata } from 'next'
 import { CTASection } from '@/components/sections/CTASection'
 import { IndustriesList } from './IndustriesList'
+
+export async function generateMetadata(): Promise<Metadata> {
+  const payload = await getPayload({ config: configPromise })
+
+  const result = await payload.find({
+    collection: 'pages',
+    where: {
+      slug: {
+        equals: 'industries',
+      },
+    },
+    limit: 1,
+  })
+
+  const page: any = result.docs[0]
+
+  return {
+    title: page?.meta?.title || 'Sectors Served | BuildCraft Flooring & Décor',
+    description: page?.meta?.description || 'Specialized flooring solutions for hospitality, commercial, and religious spaces.',
+    openGraph: {
+      title: page?.meta?.title || 'Sectors Served | BuildCraft Flooring & Décor',
+      description: page?.meta?.description || 'Specialized flooring solutions for hospitality, commercial, and religious spaces.',
+      images: page?.meta?.image
+        ? [
+            {
+              url: page.meta.image.url || '/og-image.jpg',
+            },
+          ]
+        : [],
+    },
+  }
+}
 
 export default async function IndustriesPage() {
   const payload = await getPayload({ config: configPromise })

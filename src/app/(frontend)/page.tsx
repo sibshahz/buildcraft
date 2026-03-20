@@ -1,12 +1,51 @@
 import React from 'react'
 import { getPayload } from 'payload'
 import configPromise from '@payload-config'
+import type { Metadata } from 'next'
 import { BlockRenderer } from '@/components/blocks'
 import { Hero } from '@/components/sections/Hero'
 import { ServicesGrid } from '@/components/sections/ServicesGrid'
 import { AboutSection } from '@/components/sections/AboutSection'
 import { IndustriesSection } from '@/components/sections/IndustriesSection'
 import { CTASection } from '@/components/sections/CTASection'
+
+export async function generateMetadata(): Promise<Metadata> {
+  const payload = await getPayload({ config: configPromise })
+
+  const result = await payload.find({
+    collection: 'pages',
+    where: {
+      slug: {
+        equals: 'home',
+      },
+    },
+    limit: 1,
+  })
+
+  const page: any = result.docs[0]
+
+  if (!page) {
+    return {}
+  }
+
+  const { meta } = page
+
+  return {
+    title: meta?.title || page.title,
+    description: meta?.description || '',
+    openGraph: {
+      title: meta?.title || page.title,
+      description: meta?.description || '',
+      images: meta?.image
+        ? [
+            {
+              url: meta.image.url || '/og-image.jpg',
+            },
+          ]
+        : [],
+    },
+  }
+}
 
 export default async function HomePage() {
   const payload = await getPayload({ config: configPromise })

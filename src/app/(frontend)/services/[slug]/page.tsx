@@ -2,6 +2,7 @@ import React from 'react'
 import { getPayload } from 'payload'
 import config from '@payload-config'
 import { notFound } from 'next/navigation'
+import type { Metadata } from 'next'
 import Image from 'next/image'
 import { Media } from '@/payload-types'
 import { RichText } from '@/components/common/RichText'
@@ -12,6 +13,47 @@ interface PageProps {
   params: Promise<{
     slug: string
   }>
+}
+
+export async function generateMetadata(props: PageProps): Promise<Metadata> {
+  const [{ slug }, payload] = await Promise.all([
+    props.params,
+    getPayload({ config }),
+  ])
+
+  const { docs } = await payload.find({
+    collection: 'services',
+    where: {
+      slug: {
+        equals: slug,
+      },
+    },
+    overrideAccess: false,
+  })
+
+  const service: any = docs[0]
+
+  if (!service) {
+    return {}
+  }
+
+  const { meta } = service
+
+  return {
+    title: meta?.title || service.title,
+    description: meta?.description || service.description || '',
+    openGraph: {
+      title: meta?.title || service.title,
+      description: meta?.description || service.description || '',
+      images: meta?.image
+        ? [
+            {
+              url: meta.image.url || '/og-image.jpg',
+            },
+          ]
+        : [],
+    },
+  }
 }
 
 export default async function ServicePage(props: PageProps) {

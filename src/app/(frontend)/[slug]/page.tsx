@@ -2,12 +2,54 @@ import React from 'react'
 import { getPayload } from 'payload'
 import configPromise from '@payload-config'
 import { notFound } from 'next/navigation'
+import type { Metadata } from 'next'
 import { BlockRenderer } from '@/components/blocks'
 
 interface PageProps {
   params: Promise<{
     slug: string
   }>
+}
+
+export async function generateMetadata(props: PageProps): Promise<Metadata> {
+  const [{ slug }, payload] = await Promise.all([
+    props.params,
+    getPayload({ config: configPromise }),
+  ])
+
+  const result = await payload.find({
+    collection: 'pages',
+    where: {
+      slug: {
+        equals: slug,
+      },
+    },
+    limit: 1,
+  })
+
+  const page: any = result.docs[0]
+
+  if (!page) {
+    return {}
+  }
+
+  const { meta } = page
+
+  return {
+    title: meta?.title || page.title,
+    description: meta?.description || '',
+    openGraph: {
+      title: meta?.title || page.title,
+      description: meta?.description || '',
+      images: meta?.image
+        ? [
+            {
+              url: meta.image.url || '/og-image.jpg',
+            },
+          ]
+        : [],
+    },
+  }
 }
 
 export default async function Page(props: PageProps) {

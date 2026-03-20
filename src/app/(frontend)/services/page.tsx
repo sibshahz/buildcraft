@@ -3,8 +3,41 @@ import { getPayload } from 'payload'
 import configPromise from '@payload-config'
 import Image from 'next/image'
 import Link from 'next/link'
+import type { Metadata } from 'next'
 import { CTASection } from '@/components/sections/CTASection'
 import { ServiceCard } from './ServiceCard'
+
+export async function generateMetadata(): Promise<Metadata> {
+  const payload = await getPayload({ config: configPromise })
+
+  const result = await payload.find({
+    collection: 'pages',
+    where: {
+      slug: {
+        equals: 'services',
+      },
+    },
+    limit: 1,
+  })
+
+  const page: any = result.docs[0]
+
+  return {
+    title: page?.meta?.title || 'Our Services | BuildCraft Flooring & Décor',
+    description: page?.meta?.description || 'Explore our range of premium flooring solutions across the UAE.',
+    openGraph: {
+      title: page?.meta?.title || 'Our Services | BuildCraft Flooring & Décor',
+      description: page?.meta?.description || 'Explore our range of premium flooring solutions across the UAE.',
+      images: page?.meta?.image
+        ? [
+            {
+              url: page.meta.image.url || '/og-image.jpg',
+            },
+          ]
+        : [],
+    },
+  }
+}
 
 export default async function ServicesPage() {
   const payload = await getPayload({ config: configPromise })

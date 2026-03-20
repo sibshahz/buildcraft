@@ -1,8 +1,40 @@
-import React from 'react'
 import { getPayload } from 'payload'
 import configPromise from '@payload-config'
+import type { Metadata } from 'next'
 import { CTASection } from '@/components/sections/CTASection'
 import { ProjectGrid } from './ProjectGrid'
+
+export async function generateMetadata(): Promise<Metadata> {
+  const payload = await getPayload({ config: configPromise })
+
+  const result = await payload.find({
+    collection: 'pages',
+    where: {
+      slug: {
+        equals: 'projects',
+      },
+    },
+    limit: 1,
+  })
+
+  const page: any = result.docs[0]
+
+  return {
+    title: page?.meta?.title || 'Our Portfolio | BuildCraft Flooring & Décor',
+    description: page?.meta?.description || 'Discover our luxury flooring installations across the UAE.',
+    openGraph: {
+      title: page?.meta?.title || 'Our Portfolio | BuildCraft Flooring & Décor',
+      description: page?.meta?.description || 'Discover our luxury flooring installations across the UAE.',
+      images: page?.meta?.image
+        ? [
+            {
+              url: page.meta.image.url || '/og-image.jpg',
+            },
+          ]
+        : [],
+    },
+  }
+}
 
 export default async function ProjectsPage() {
   const payload = await getPayload({ config: configPromise })

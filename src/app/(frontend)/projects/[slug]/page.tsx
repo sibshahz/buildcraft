@@ -2,6 +2,7 @@ import React from 'react'
 import { getPayload } from 'payload'
 import config from '@payload-config'
 import { notFound } from 'next/navigation'
+import type { Metadata } from 'next'
 import Image from 'next/image'
 import { Media, Industry } from '@/payload-types'
 import { RichText } from '@/components/common/RichText'
@@ -12,6 +13,47 @@ interface PageProps {
   params: Promise<{
     slug: string
   }>
+}
+
+export async function generateMetadata(props: PageProps): Promise<Metadata> {
+  const [{ slug }, payload] = await Promise.all([
+    props.params,
+    getPayload({ config }),
+  ])
+
+  const { docs } = await payload.find({
+    collection: 'projects',
+    where: {
+      slug: {
+        equals: slug,
+      },
+    },
+    overrideAccess: false,
+  })
+
+  const project: any = docs[0]
+
+  if (!project) {
+    return {}
+  }
+
+  const { meta } = project
+
+  return {
+    title: meta?.title || project.title,
+    description: meta?.description || `${project.title} for ${project.client} in ${project.location}`,
+    openGraph: {
+      title: meta?.title || project.title,
+      description: meta?.description || `${project.title} for ${project.client} in ${project.location}`,
+      images: meta?.image
+        ? [
+            {
+              url: meta.image.url || '/og-image.jpg',
+            },
+          ]
+        : [],
+    },
+  }
 }
 
 export default async function ProjectPage({ params }: PageProps) {
