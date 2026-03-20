@@ -54,6 +54,9 @@ export async function generateMetadata(props: PageProps): Promise<Metadata> {
           ]
         : [],
     },
+    alternates: {
+      canonical: `/services/${slug}`,
+    },
   }
 }
 
@@ -96,9 +99,35 @@ export default async function ServicePage(props: PageProps) {
     areaServed: 'United Arab Emirates',
   }
 
+  const breadcrumbLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://buildcraftflooring.com',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Services',
+        item: 'https://buildcraftflooring.com/services',
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: service.title,
+        item: `https://buildcraftflooring.com/services/${slug}`,
+      },
+    ],
+  }
+
   return (
     <main className="min-h-screen bg-pearl">
       <JsonLd data={jsonLd} />
+      <JsonLd data={breadcrumbLd} />
       {/* Hero Section */}
       <section className="relative h-[70vh] flex items-center justify-center overflow-hidden">
         <Image

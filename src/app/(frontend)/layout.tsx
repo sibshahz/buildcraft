@@ -35,7 +35,10 @@ export async function generateMetadata(): Promise<Metadata> {
     slug: 'site-settings',
   })
 
+  const baseUrl = process.env.NEXT_PUBLIC_SERVER_URL || 'https://buildcraftflooring.com'
+
   return {
+    metadataBase: new URL(baseUrl),
     description:
       siteSettings.meta?.description ||
       'Premium flooring solutions in UAE - carpets, tiles, and LVT flooring for hospitality, offices, and residential spaces.',
@@ -60,6 +63,9 @@ export async function generateMetadata(): Promise<Metadata> {
               url: '/og-image.png',
             },
           ],
+    },
+    alternates: {
+      canonical: '/',
     },
   }
 }

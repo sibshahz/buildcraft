@@ -8,6 +8,7 @@ import { Media, Industry } from '@/payload-types'
 import { RichText } from '@/components/common/RichText'
 import { Calendar, MapPin, User, ArrowLeft } from 'lucide-react'
 import Link from 'next/link'
+import { JsonLd } from '@/components/common/JsonLd'
 
 interface PageProps {
   params: Promise<{
@@ -53,6 +54,9 @@ export async function generateMetadata(props: PageProps): Promise<Metadata> {
           ]
         : [],
     },
+    alternates: {
+      canonical: `/projects/${slug}`,
+    },
   }
 }
 
@@ -77,8 +81,34 @@ export default async function ProjectPage({ params }: PageProps) {
     return notFound()
   }
 
+  const breadcrumbLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://buildcraftflooring.com',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Portfolio',
+        item: 'https://buildcraftflooring.com/projects',
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: project.title,
+        item: `https://buildcraftflooring.com/projects/${slug}`,
+      },
+    ],
+  }
+
   return (
     <main className="min-h-screen bg-pearl pb-24">
+      <JsonLd data={breadcrumbLd} />
       {/* Hero Section */}
       <section className="relative h-[80vh] flex items-end overflow-hidden">
         <Image

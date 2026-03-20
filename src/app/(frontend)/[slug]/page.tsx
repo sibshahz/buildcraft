@@ -49,6 +49,9 @@ export async function generateMetadata(props: PageProps): Promise<Metadata> {
           ]
         : [],
     },
+    alternates: {
+      canonical: slug === 'home' ? '/' : `/${slug}`,
+    },
   }
 }
 
