@@ -16,6 +16,7 @@ import { ContactRequests } from './collections/ContactRequests'
 import { SiteSettings } from './globals/SiteSettings'
 
 import { cloudinaryStorage } from 'payload-cloudinary'
+import { seoPlugin } from '@payloadcms/plugin-seo'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -72,5 +73,13 @@ export default buildConfig({
           }),
         ]
       : []),
+    seoPlugin({
+      collections: ['pages', 'services', 'projects', 'industries'],
+      globals: ['site-settings'],
+      uploadsCollection: 'media',
+      generateTitle: ({ doc }) =>
+        `${(doc as any)?.title || (doc as any)?.name || 'BuildCraft'} | BuildCraft Flooring & Décor`,
+      generateDescription: ({ doc }) => (doc as any)?.excerpt || (doc as any)?.description || '',
+    }),
   ],
 })
