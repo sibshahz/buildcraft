@@ -7,10 +7,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = process.env.NEXT_PUBLIC_SERVER_URL || 'https://buildcraftflooring.com'
 
   // Fetch all collections
-  const [pages, services, projects] = await Promise.all([
+  const [pages, services, projects, industries] = await Promise.all([
     payload.find({ collection: 'pages', limit: 1000 }),
     payload.find({ collection: 'services', limit: 1000 }),
     payload.find({ collection: 'projects', limit: 1000 }),
+    payload.find({ collection: 'industries', limit: 1000 }),
   ])
 
   const pageLinks = pages.docs.map((page) => ({
@@ -34,6 +35,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.6,
   }))
 
+  const industryLinks = industries.docs.map((industry) => ({
+    url: `${baseUrl}/industries/${industry.slug}`,
+    lastModified: new Date(industry.updatedAt),
+    changeFrequency: 'monthly' as const,
+    priority: 0.7,
+  }))
+
   const staticLinks = [
     { url: `${baseUrl}/services`, lastModified: new Date(), changeFrequency: 'monthly' as const, priority: 0.8 },
     { url: `${baseUrl}/projects`, lastModified: new Date(), changeFrequency: 'monthly' as const, priority: 0.8 },
@@ -41,5 +49,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${baseUrl}/contact`, lastModified: new Date(), changeFrequency: 'yearly' as const, priority: 0.3 },
   ]
 
-  return [...pageLinks, ...serviceLinks, ...projectLinks, ...staticLinks]
+  return [...pageLinks, ...serviceLinks, ...projectLinks, ...industryLinks, ...staticLinks]
 }

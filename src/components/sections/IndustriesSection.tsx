@@ -13,8 +13,7 @@ import {
   GraduationCap,
   ArrowRight
 } from 'lucide-react'
-
-import { IndustryModal } from './IndustryModal'
+import Link from 'next/link'
 
 const iconMap = {
   hotel: Hotel,
@@ -23,6 +22,7 @@ const iconMap = {
   mosque: Palmtree,
   retail: ShoppingBag,
   graduation: GraduationCap,
+  shop: ShoppingBag,
 }
 
 interface IndustriesSectionProps {
@@ -36,8 +36,6 @@ export const IndustriesSection: React.FC<IndustriesSectionProps> = ({
   subheading = 'Strategic Partners',
   industries,
 }) => {
-  const [selectedIndustry, setSelectedIndustry] = useState<Industry | null>(null)
-
   return (
     <section className="py-24 md:py-48 bg-onyx relative overflow-hidden">
       {/* Dynamic Background Noise/Texture */}
@@ -73,51 +71,49 @@ export const IndustriesSection: React.FC<IndustriesSectionProps> = ({
           {industries?.map((industry, index) => {
             const Icon = iconMap[industry.icon as keyof typeof iconMap] || Building2
             return (
-              <motion.div
+              <Link
                 key={industry.id}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: index * 0.1 }}
-                onClick={() => setSelectedIndustry(industry)}
-                className="group relative h-[450px] border-[0.5px] border-white/10 overflow-hidden cursor-pointer"
+                href={`/industries/${industry.slug}`}
+                className="group relative h-[450px] border-[0.5px] border-white/10 overflow-hidden cursor-pointer block"
               >
-                {/* Background Image */}
-                <Image
-                  src={(industry.bannerImage as Media)?.url || ''}
-                  alt={industry.title}
-                  fill
-                  className="object-cover opacity-30 grayscale group-hover:grayscale-0 group-hover:scale-110 group-hover:opacity-60 transition-all duration-1000"
-                />
+                <motion.div
+                   initial={{ opacity: 0, y: 40 }}
+                   whileInView={{ opacity: 1, y: 0 }}
+                   viewport={{ once: true }}
+                   transition={{ duration: 0.8, delay: index * 0.1 }}
+                   className="h-full w-full"
+                >
+                  {/* Background Image */}
+                  <Image
+                    src={(industry.bannerImage as Media)?.url || ''}
+                    alt={industry.title}
+                    fill
+                    className="object-cover opacity-30 grayscale group-hover:grayscale-0 group-hover:scale-110 group-hover:opacity-60 transition-all duration-1000"
+                  />
 
-                <div className="absolute inset-0 bg-gradient-to-t from-onyx via-transparent to-transparent opacity-90" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-onyx via-transparent to-transparent opacity-90" />
 
-                <div className="relative h-full p-12 flex flex-col justify-end">
-                  <div className="mb-8 p-4 w-fit bg-gold/10 backdrop-blur-sm border border-gold/20 group-hover:bg-gold group-hover:text-onyx transition-colors duration-500">
-                    <Icon className="w-6 h-6 text-gold group-hover:text-onyx" />
+                  <div className="relative h-full p-12 flex flex-col justify-end">
+                    <div className="mb-8 p-4 w-fit bg-gold/10 backdrop-blur-sm border border-gold/20 group-hover:bg-gold group-hover:text-onyx transition-colors duration-500">
+                      <Icon className="w-6 h-6 text-gold group-hover:text-onyx" />
+                    </div>
+                    <h3 className="text-2xl font-serif text-white mb-4">
+                      {industry.title}
+                    </h3>
+                    <p className="text-white/50 text-sm font-light leading-relaxed mb-8 transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
+                      {industry.description}
+                    </p>
+                    <div className="flex items-center text-gold font-bold uppercase tracking-[0.2em] text-[10px]">
+                      <span className="mr-3">Discover Excellence</span>
+                      <ArrowRight className="w-3 h-3 transform group-hover:translate-x-2 transition-transform" />
+                    </div>
                   </div>
-                  <h3 className="text-2xl font-serif text-white mb-4">
-                    {industry.title}
-                  </h3>
-                  <p className="text-white/50 text-sm font-light leading-relaxed mb-8 transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
-                    {industry.description}
-                  </p>
-                  <div className="flex items-center text-gold font-bold uppercase tracking-[0.2em] text-[10px]">
-                    <span className="mr-3">Discover Excellence</span>
-                    <ArrowRight className="w-3 h-3 transform group-hover:translate-x-2 transition-transform" />
-                  </div>
-                </div>
-              </motion.div>
+                </motion.div>
+              </Link>
             )
           })}
         </div>
       </div>
-
-      <IndustryModal 
-        industry={selectedIndustry}
-        isOpen={!!selectedIndustry}
-        onClose={() => setSelectedIndustry(null)}
-      />
     </section>
   )
 }
