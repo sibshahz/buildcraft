@@ -13,7 +13,7 @@ const navLinks = [
   { name: 'About', href: '/about' },
   { name: 'Services', href: '/services' },
   { name: 'Industries', href: '/industries' },
-  { name: 'Projects', href: '/projects' },
+  // { name: 'Projects', href: '/projects' },
   { name: 'Contact', href: '/contact' },
 ]
 
@@ -85,7 +85,7 @@ export const Navbar = ({ settings }: { settings: SiteSetting }) => {
                   scrolled ? 'text-gold' : 'text-gold/90',
                 )}
               >
-                Ajman • UAE
+                Flooring & Décor
               </span>
             </div>
           </Link>

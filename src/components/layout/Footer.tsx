@@ -66,7 +66,7 @@ export const Footer = ({ settings }: { settings: SiteSetting }) => {
                 BuildCraft
               </span>
               <span className="text-[10px] uppercase tracking-[0.4em] text-gold font-bold mt-2">
-                Ajman • UAE
+                Flooring & Décor
               </span>
             </div>
           </Link>
