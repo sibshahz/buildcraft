@@ -6,6 +6,7 @@ import Link from 'next/link'
 import type { Metadata } from 'next'
 import { CTASection } from '@/components/sections/CTASection'
 import { ServiceCard } from './ServiceCard'
+import ServicesPic from '../../../../public/services-for-you.jpeg'
 
 export async function generateMetadata(): Promise<Metadata> {
   const payload = await getPayload({ config: configPromise })
@@ -24,10 +25,13 @@ export async function generateMetadata(): Promise<Metadata> {
 
   return {
     title: page?.meta?.title || 'Our Services | BuildCraft Flooring & Décor',
-    description: page?.meta?.description || 'Explore our range of premium flooring solutions across the UAE.',
+    description:
+      page?.meta?.description || 'Explore our range of premium flooring solutions across the UAE.',
     openGraph: {
       title: page?.meta?.title || 'Our Services | BuildCraft Flooring & Décor',
-      description: page?.meta?.description || 'Explore our range of premium flooring solutions across the UAE.',
+      description:
+        page?.meta?.description ||
+        'Explore our range of premium flooring solutions across the UAE.',
       images: page?.meta?.image
         ? [
             {
@@ -108,8 +112,8 @@ export default async function ServicesPage() {
           <div className="relative">
             <div className="w-full h-[500px] border border-white/5 opacity-40 group overflow-hidden">
               <Image
-                src="https://images.unsplash.com/photo-1621600411688-4be93cd68504?q=80&w=2000&auto=format&fit=crop"
-                alt="Custom Carpeting"
+                src={ServicesPic}
+                alt="Bespoke Solutions for you"
                 fill
                 className="object-cover transition-transform duration-1000 group-hover:scale-110 grayscale"
               />
