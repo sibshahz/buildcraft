@@ -73,13 +73,21 @@ export default async function HomePage() {
 
   const page = result.docs[0]
 
+  const webSiteJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'BuildCraft Flooring & Décor',
+    url: 'https://buildcraftflooring.ae',
+    alternateName: ['BuildCraft', 'BuildCraft Flooring'],
+  }
+
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'LocalBusiness',
     name: 'BuildCraft Flooring & Décor',
-    image: (siteSettings.logo as any)?.url || 'https://buildcraftflooring.com/og-image.png',
-    '@id': 'https://buildcraftflooring.com',
-    url: 'https://buildcraftflooring.com',
+    image: (siteSettings.logo as any)?.url || 'https://buildcraftflooring.ae/og-image.png',
+    '@id': 'https://buildcraftflooring.ae',
+    url: 'https://buildcraftflooring.ae',
     telephone: siteSettings.phone,
     address: {
       '@type': 'PostalAddress',
@@ -104,6 +112,7 @@ export default async function HomePage() {
 
   return (
     <div className="flex flex-col">
+      <JsonLd data={webSiteJsonLd} />
       <JsonLd data={jsonLd} />
       {page ? (
         <BlockRenderer blocks={page.layout} />

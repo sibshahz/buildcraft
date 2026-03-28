@@ -35,7 +35,7 @@ export async function generateMetadata(): Promise<Metadata> {
     slug: 'site-settings',
   })
 
-  const baseUrl = process.env.NEXT_PUBLIC_SERVER_URL || 'https://buildcraftflooring.com'
+  const baseUrl = process.env.NEXT_PUBLIC_SERVER_URL || 'https://buildcraftflooring.ae'
 
   return {
     metadataBase: new URL(baseUrl),
@@ -47,9 +47,14 @@ export async function generateMetadata(): Promise<Metadata> {
       default: siteSettings.meta?.title || 'BuildCraft Flooring & Décor | Premium Flooring Solutions UAE',
     },
     icons: {
-      icon: '/favicon.ico',
+      icon: [
+        { url: '/favicon.ico' },
+        { url: '/favicon.png', sizes: '32x32', type: 'image/png' },
+      ],
+      apple: '/apple-touch-icon.png',
     },
     openGraph: {
+      siteName: 'BuildCraft Flooring & Décor',
       title: siteSettings.meta?.title || 'BuildCraft Flooring & Décor',
       description: siteSettings.meta?.description || 'Premium flooring solutions in UAE',
       images: siteSettings.meta?.image

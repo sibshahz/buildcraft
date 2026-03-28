@@ -4,7 +4,7 @@ import type { MetadataRoute } from 'next'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const payload = await getPayload({ config: configPromise })
-  const baseUrl = process.env.NEXT_PUBLIC_SERVER_URL || 'https://buildcraftflooring.com'
+  const baseUrl = process.env.NEXT_PUBLIC_SERVER_URL || 'https://buildcraftflooring.ae'
 
   // Fetch all collections
   // const [pages, services, projects, industries] = await Promise.all([
